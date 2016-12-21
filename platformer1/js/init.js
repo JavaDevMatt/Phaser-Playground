@@ -1,6 +1,7 @@
 var initState = {
 
-	create: function() {
+	preload: function(){
+
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		var loadingLabel = game.add.text(20, 150, 'loading game data...', 
@@ -9,7 +10,11 @@ var initState = {
 		// add content loadin here
 		// game.load.image('img', 'assets/img.png');
 
-		// game.state.start('menu');
+	},
+
+	create: function() {
+		
+		game.state.start('menu');
 	}
 
 };
