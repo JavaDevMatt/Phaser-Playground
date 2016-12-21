@@ -17,6 +17,8 @@ var playState = {
         platform1.body.immovable = true;
         var platform2 = platforms.create(197, 300, 'platform');
         platform2.body.immovable = true;
+        var platform3 = platforms.create(506, 300, 'platform');
+        platform3.body.immovable = true;
 
         killers = game.add.group();
         killers.enableBody = true;

@@ -2,7 +2,11 @@ var menuState = {
 
 
 	create: function() {
+		if(music != null){
+			music.stop();
+		}
 		music = game.sound.play('music');
+		music.volume = 1.0;
 		game.add.sprite(0, 0, 'background');
 
 		monster1 = game.add.sprite(160, game.world.height-60, 'monster1');
@@ -27,7 +31,6 @@ var menuState = {
 	},
 
 	startGame: function(){
-		// music.stop();
 		music.volume = 0.5;
 		game.sound.play('splash');
 		console.log('dummy startGame');
