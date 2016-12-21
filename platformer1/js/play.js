@@ -20,6 +20,10 @@ var playState = {
         var platform3 = platforms.create(506, 300, 'platform');
         platform3.body.immovable = true;
 
+        faller = game.add.sprite(420, 282, 'faller');
+        game.physics.arcade.enable(faller);
+
+
         killers = game.add.group();
         killers.enableBody = true;
         lava = killers.create(141, 332, 'lava');
@@ -30,9 +34,6 @@ var playState = {
         lava3.body.immovable = true;
         lava4 = killers.create(450, 332, 'lava');
         lava4.body.immovable = true;
-
-        // lava = game.add.sprite(141, 332, 'lava');
-        // game.physics.arcade.enable(lava);
        
         lava.animations.add('stand', [0, 1], 2, true);
         lava2.animations.add('stand', [0, 1], 2, true);
@@ -44,6 +45,7 @@ var playState = {
 
 	 update: function() {   
 	 	game.physics.arcade.collide(player, platforms);
+	 	game.physics.arcade.collide(player, faller);
 
 	 	player.animations.play('stand');
 	 	lava.animations.play('stand');
@@ -74,8 +76,7 @@ var playState = {
 	 	game.sound.play('die');
 	 	player.x = -1000;
 	 	setTimeout(function(){
-	    	player.x = 10;
-		 	player.y = 10;
+	 		game.state.start('play');
 		}, 600);
 	 	
 	 },
