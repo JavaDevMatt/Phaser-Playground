@@ -15,9 +15,14 @@ var playState = {
         platforms.enableBody = true;
         var platform1 = platforms.create(0, 300, 'platform');
         platform1.body.immovable = true;
-        var platform2 = platforms.create(200, 300, 'platform');
+        var platform2 = platforms.create(197, 300, 'platform');
         platform2.body.immovable = true;
-        platform2.scale.setTo(0.3, 1);
+        // platform2.scale.setTo(0.3, 1);
+
+        lava = game.add.sprite(141, 332, 'lava');
+        game.physics.arcade.enable(lava);
+        lava.body.immovable = true;
+        lava.animations.add('stand', [0, 1], 2, true);
 
         cursors = game.input.keyboard.createCursorKeys();
 	 },
@@ -26,6 +31,7 @@ var playState = {
 	 	game.physics.arcade.collide(player, platforms);
 
 	 	player.animations.play('stand');
+	 	lava.animations.play('stand');
 
 		player.body.velocity.x = 0;
 		if (cursors.left.isDown) 
