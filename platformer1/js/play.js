@@ -5,11 +5,19 @@ var playState = {
 
 	 	player = game.add.sprite(10, 10, 'monster1');
 		player.animations.add('stand', [0, 1, 2], 5, true);
-
 		game.physics.arcade.enable(player);
 		player.body.bounce.y = 0.2;
    		player.body.gravity.y = 300;
         player.body.collideWorldBounds = true;
+
+		goal = game.add.sprite(560, 10, 'monster1');
+		goal.animations.add('stand', [0, 1, 2], 5, true);
+		game.physics.arcade.enable(goal);
+		goal.body.bounce.y = 0.2;
+   		goal.body.gravity.y = 300;
+        goal.body.collideWorldBounds = true;
+
+		
 
         platforms = game.add.group();
         platforms.enableBody = true;
@@ -46,8 +54,11 @@ var playState = {
 	 update: function() {   
 	 	game.physics.arcade.collide(player, platforms);
 	 	game.physics.arcade.collide(player, faller);
+	 	game.physics.arcade.collide(player, goal);
+	 	game.physics.arcade.collide(platforms, goal);
 
 	 	player.animations.play('stand');
+	 	goal.animations.play('stand');
 	 	lava.animations.play('stand');
 	 	lava2.animations.play('stand');
 	 	lava3.animations.play('stand');
@@ -70,6 +81,8 @@ var playState = {
 	    }
 
 	    game.physics.arcade.overlap(player, killers, this.die, null, this);
+	    game.physics.arcade.overlap(goal, killers, this.win, null, this);
+
 	 },
 
 	 die: function(){
@@ -78,6 +91,17 @@ var playState = {
 	 	setTimeout(function(){
 	 		game.state.start('play');
 		}, 600);
+	 	
+	 },
+
+	 win: function(){
+	 	game.sound.play('splash');
+	 	goal.x = -1000;
+	 	var loadingLabel = game.add.text(20, 150, 'YOU WIN', 
+			{font: '40px Courier', fill: '#fff'});
+	 	setTimeout(function(){
+	 		game.state.start('menu');
+		}, 2000);
 	 	
 	 },
 
