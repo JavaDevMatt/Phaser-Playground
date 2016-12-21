@@ -47,6 +47,18 @@ var playState = {
 	    	game.sound.play('jump');
 	        player.body.velocity.y = -150;
 	    }
+
+	    game.physics.arcade.overlap(player, lava, this.die, null, this);
+	 },
+
+	 die: function(){
+	 	game.sound.play('die');
+	 	player.x = -1000;
+	 	setTimeout(function(){
+	    	player.x = 10;
+		 	player.y = 10;
+		}, 600);
+	 	
 	 },
 
 };

@@ -16,6 +16,7 @@ var initState = {
 
 		game.load.audio('splash', 'assets/splash.mp3'); // http://opengameart.org/content/lava-splash
 		game.load.audio('jump', 'assets/jump.mp3');
+		game.load.audio('die', 'assets/die.mp3');
 	},
 
 	initStuff: function(){
