@@ -28,10 +28,10 @@ var menuState = {
 
 	startGame: function(){
 		// music.stop();
-		music.volume = 0.2;
+		music.volume = 0.5;
 		game.sound.play('splash');
 		console.log('dummy startGame');
-		// game.state.start('play');
+		game.state.start('play');
 	},
 
 };
