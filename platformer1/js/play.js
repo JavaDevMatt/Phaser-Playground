@@ -38,6 +38,7 @@ var playState = {
 	    }
 	    if (cursors.up.isDown && player.body.touching.down)
 	    {
+	    	game.sound.play('jump');
 	        player.body.velocity.y = -150;
 	    }
 	 },

@@ -13,6 +13,7 @@ var initState = {
 		
 		game.load.spritesheet('monster1', 'assets/monster1.png', 30, 23); // http://opengameart.org/content/scifi-creature-tileset-mini-32x32-scifi-creature-icons 
 		game.load.audio('splash', 'assets/splash.mp3'); // http://opengameart.org/content/lava-splash
+		game.load.audio('jump', 'assets/jump.mp3');
 	},
 
 	initStuff: function(){
