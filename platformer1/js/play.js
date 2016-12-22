@@ -1,7 +1,13 @@
 var playState = {
 
 	 create: function() {	
+	 	canBoostFlag = true;
+
 	 	game.add.sprite(0, 0, 'background2');
+
+	 	arrow = game.add.sprite(20, 270, 'arrow');
+   		game.physics.arcade.enable(arrow);
+   		arrow.body.immovable = true;
 
 	 	player = game.add.sprite(10, 10, 'monster1');
 		player.animations.add('stand', [0, 1, 2], 5, true);
@@ -23,7 +29,6 @@ var playState = {
    		trampoline.body.gravity.y = 300;
    		trampoline.body.collideWorldBounds = true;
 
-		
 
         platforms = game.add.group();
         platforms.enableBody = true;
@@ -64,6 +69,7 @@ var playState = {
 	 	game.physics.arcade.collide(platforms, goal);
 	 	game.physics.arcade.collide(player, trampoline);
 	 	game.physics.arcade.collide(trampoline, platforms);
+	 	// game.physics.arcade.collide(player, arrow);
 
 	 	player.animations.play('stand');
 	 	goal.animations.play('stand');
@@ -94,6 +100,20 @@ var playState = {
 	    game.physics.arcade.overlap(player, trampoline, this.trampolinePlayer, null, this);
 	    trampoline.body.velocity.x = 0;
 	    faller.body.velocity.x = 0;
+	    game.physics.arcade.overlap(player, arrow, null, this.arrowBoost, this);
+	 },
+
+	 arrowBoost: function(){
+	 	if(canBoostFlag){
+	 		game.sound.play('ding')
+	 		canBoostFlag = false;
+	 		arrow.kill();
+		 	setTimeout(function(){
+		 		canBoostFlag = true;
+		 		player.body.velocity.y = -500;
+			}, 3000);
+	 	}
+	 	
 	 },
 
 	 trampolinePlayer: function(){

@@ -12,11 +12,13 @@ var initState = {
 		game.load.image('platform', 'assets/platform.png');
 		game.load.image('faller', 'assets/faller.png'); 
 		game.load.image('trampoline', 'assets/trampoline.png');
+		game.load.image('arrow', 'assets/arrow.png');
 
 		game.load.spritesheet('monster1', 'assets/monster1.png', 30, 23); // http://opengameart.org/content/scifi-creature-tileset-mini-32x32-scifi-creature-icons 
 		game.load.spritesheet('lava', 'assets/lava.png', 56, 32); 
 
 		game.load.audio('splash', 'assets/splash.mp3'); // http://opengameart.org/content/lava-splash
+		game.load.audio('ding', 'assets/ding.mp3'); // http://freesound.org/people/gloriaeffect/sounds/108428/
 		game.load.audio('jump', 'assets/jump.mp3');
 		game.load.audio('trampoline_jump', 'assets/trampoline_jump.mp3'); // http://freesound.org/people/arteffect/sounds/349854/
 		game.load.audio('die', 'assets/die.mp3');
