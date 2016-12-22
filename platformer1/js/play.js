@@ -17,6 +17,12 @@ var playState = {
    		goal.body.gravity.y = 300;
         goal.body.collideWorldBounds = true;
 
+        trampoline = game.add.sprite(240, 270, 'trampoline');
+		game.physics.arcade.enable(trampoline);
+		trampoline.body.bounce.y = 0.2;
+   		trampoline.body.gravity.y = 300;
+   		trampoline.body.collideWorldBounds = true;
+
 		
 
         platforms = game.add.group();
@@ -56,6 +62,8 @@ var playState = {
 	 	game.physics.arcade.collide(player, faller);
 	 	game.physics.arcade.collide(player, goal);
 	 	game.physics.arcade.collide(platforms, goal);
+	 	game.physics.arcade.collide(player, trampoline);
+	 	game.physics.arcade.collide(trampoline, platforms);
 
 	 	player.animations.play('stand');
 	 	goal.animations.play('stand');
@@ -83,6 +91,12 @@ var playState = {
 	    game.physics.arcade.overlap(player, killers, this.die, null, this);
 	    game.physics.arcade.overlap(goal, killers, this.win, null, this);
 
+	    game.physics.arcade.overlap(player, trampoline, this.trampolinePlayer, null, this);
+	    trampoline.body.velocity.x = 0;
+	 },
+
+	 trampolinePlayer: function(){
+	 	player.body.velocity.y -= 200;
 	 },
 
 	 die: function(){
