@@ -5,11 +5,11 @@ var playState = {
 
 	 	game.add.sprite(0, 0, 'background2');
 
-	 	arrow = game.add.sprite(20, 270, 'arrow');
+	 	arrow = game.add.sprite(10, 270, 'arrow');
    		game.physics.arcade.enable(arrow);
    		arrow.body.immovable = true;
 
-	 	player = game.add.sprite(10, 10, 'monster1');
+	 	player = game.add.sprite(80, 10, 'monster1');
 		player.animations.add('stand', [0, 1, 2], 5, true);
 		game.physics.arcade.enable(player);
 		player.body.bounce.y = 0.2;
