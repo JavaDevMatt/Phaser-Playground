@@ -53,6 +53,9 @@ var playState = {
         faller = game.add.sprite(420, 282, 'faller');
         game.physics.arcade.enable(faller);
 
+        slowFaller = game.add.sprite(120, 162, 'faller');
+        game.physics.arcade.enable(slowFaller);
+
         rider = game.add.sprite(290, 50, 'faller');
         game.physics.arcade.enable(rider);
         rider.body.immovable = true;
@@ -88,12 +91,14 @@ var playState = {
 	 	game.physics.arcade.collide(player, platforms);
 	 	game.physics.arcade.collide(player, rider);
 	 	game.physics.arcade.collide(player, faller);
+	 	game.physics.arcade.collide(player, slowFaller);
+	 	game.physics.arcade.collide(slowFaller, platforms);
 	 	game.physics.arcade.collide(goal, faller);
 	 	game.physics.arcade.collide(player, goal);
 	 	game.physics.arcade.collide(platforms, goal);
 	 	game.physics.arcade.collide(player, trampoline);
 	 	game.physics.arcade.collide(trampoline, platforms);
-	 	// game.physics.arcade.collide(player, arrow);
+	 	game.physics.arcade.collide(slowFaller, trampoline);
 
 	 	player.animations.play('stand');
 	 	goal.animations.play('stand');
@@ -103,6 +108,8 @@ var playState = {
 	 	lava4.animations.play('stand');
 	 	lava5.animations.play('stand');
 
+	 	slowFaller.body.velocity.x = 0;
+	 	slowFaller.body.velocity.y = 0;
 
 		player.body.velocity.x = 0;
 		if (cursors.left.isDown) 
