@@ -93,6 +93,7 @@ var playState = {
 
 	    game.physics.arcade.overlap(player, trampoline, this.trampolinePlayer, null, this);
 	    trampoline.body.velocity.x = 0;
+	    faller.body.velocity.x = 0;
 	 },
 
 	 trampolinePlayer: function(){
