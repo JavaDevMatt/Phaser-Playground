@@ -3,7 +3,10 @@ var playState = {
 	 create: function() {	
 	 	canBoostFlag = true;
 
+	 	game.world.setBounds(0, 0, 1245, 376);
+
 	 	game.add.sprite(0, 0, 'background2');
+	 	game.add.sprite(640, 0, 'background2');
 
 	 	arrow = game.add.sprite(10, 270, 'arrow');
    		game.physics.arcade.enable(arrow);
@@ -38,6 +41,14 @@ var playState = {
         platform2.body.immovable = true;
         var platform3 = platforms.create(506, 300, 'platform');
         platform3.body.immovable = true;
+        var platform4 = platforms.create(646, 300, 'platform');
+        platform4.body.immovable = true;
+        var platform5 = platforms.create(787, 300, 'platform');
+        platform5.body.immovable = true;
+        var platform6 = platforms.create(928, 300, 'platform');
+        platform6.body.immovable = true;
+        var platform7 = platforms.create(1049, 300, 'platform');
+        platform7.body.immovable = true;
 
         faller = game.add.sprite(420, 282, 'faller');
         game.physics.arcade.enable(faller);
@@ -53,18 +64,23 @@ var playState = {
         lava3.body.immovable = true;
         lava4 = killers.create(450, 332, 'lava');
         lava4.body.immovable = true;
+        lava5 = killers.create(1190, 332, 'lava');
+        lava5.body.immovable = true;
        
         lava.animations.add('stand', [0, 1], 2, true);
         lava2.animations.add('stand', [0, 1], 2, true);
         lava3.animations.add('stand', [0, 1], 2, true);
         lava4.animations.add('stand', [0, 1], 2, true);
+        lava5.animations.add('stand', [0, 1], 2, true);
 
         cursors = game.input.keyboard.createCursorKeys();
+        game.camera.follow(player); 
 	 },
 
 	 update: function() {   
 	 	game.physics.arcade.collide(player, platforms);
 	 	game.physics.arcade.collide(player, faller);
+	 	game.physics.arcade.collide(goal, faller);
 	 	game.physics.arcade.collide(player, goal);
 	 	game.physics.arcade.collide(platforms, goal);
 	 	game.physics.arcade.collide(player, trampoline);
@@ -77,6 +93,7 @@ var playState = {
 	 	lava2.animations.play('stand');
 	 	lava3.animations.play('stand');
 	 	lava4.animations.play('stand');
+	 	lava5.animations.play('stand');
 
 
 		player.body.velocity.x = 0;
@@ -113,7 +130,7 @@ var playState = {
 		 		player.body.velocity.y = -500;
 			}, 3000);
 	 	}
-	 	
+	 	 
 	 },
 
 	 trampolinePlayer: function(){
@@ -133,7 +150,7 @@ var playState = {
 	 win: function(){
 	 	game.sound.play('splash');
 	 	goal.x = -1000;
-	 	var loadingLabel = game.add.text(20, 150, 'YOU WIN', 
+	 	var loadingLabel = game.add.text(player.x - 100, player.y - 150, 'YOU WIN', 
 			{font: '40px Courier', fill: '#fff'});
 	 	setTimeout(function(){
 	 		game.state.start('menu');
