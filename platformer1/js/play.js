@@ -97,6 +97,7 @@ var playState = {
 
 	 trampolinePlayer: function(){
 	 	player.body.velocity.y -= 200;
+	 	game.sound.play('trampoline_jump');
 	 },
 
 	 die: function(){

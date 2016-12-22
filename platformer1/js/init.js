@@ -18,6 +18,7 @@ var initState = {
 
 		game.load.audio('splash', 'assets/splash.mp3'); // http://opengameart.org/content/lava-splash
 		game.load.audio('jump', 'assets/jump.mp3');
+		game.load.audio('trampoline_jump', 'assets/trampoline_jump.mp3'); // http://freesound.org/people/arteffect/sounds/349854/
 		game.load.audio('die', 'assets/die.mp3');
 	},
 
