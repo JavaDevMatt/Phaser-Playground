@@ -53,6 +53,13 @@ var playState = {
         faller = game.add.sprite(420, 282, 'faller');
         game.physics.arcade.enable(faller);
 
+        rider = game.add.sprite(290, 50, 'faller');
+        game.physics.arcade.enable(rider);
+        rider.body.immovable = true;
+        rider.body.bounce.setTo(1, 1);
+        rider.body.collideWorldBounds = true;
+        rider.body.velocity.setTo(-100, 0);
+
 
         killers = game.add.group();
         killers.enableBody = true;
@@ -79,6 +86,7 @@ var playState = {
 
 	 update: function() {   
 	 	game.physics.arcade.collide(player, platforms);
+	 	game.physics.arcade.collide(player, rider);
 	 	game.physics.arcade.collide(player, faller);
 	 	game.physics.arcade.collide(goal, faller);
 	 	game.physics.arcade.collide(player, goal);
