@@ -1,14 +1,13 @@
 var playState = {
 
 
-	 create: function() {	
+	 create: function() {	 
 	 	
 	 	canBoostFlag = true;
 
-	 	game.world.setBounds(0, 0, 1245, 376);
+	 	level = new Level1();
 
-	 	game.add.sprite(0, 0, 'background2');
-	 	game.add.sprite(640, 0, 'background2');
+	 	level.createBackground(game);
 
 	 	arrow = game.add.sprite(10, 270, 'arrow');
    		game.physics.arcade.enable(arrow);
