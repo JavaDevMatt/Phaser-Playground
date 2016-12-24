@@ -37,6 +37,10 @@ var playState = {
 		this.initSlowFallers();
 		this.initRiders();
 
+		emitter = game.add.emitter(0, 0, 100);
+   		emitter.makeParticles('particle');
+		emitter.gravity = 200;
+
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -77,8 +81,18 @@ var playState = {
 	    if (cursors.up.isDown && player.body.touching.down){
 	    	game.sound.play('jump');
 	        player.body.velocity.y = -150;
+
+	        emitter.x = player.x + 15;
+    		emitter.y = player.y + 25;
+			emitter.start(true, 2000, null, 20);
 	    }
 
+	    if(player.body.touching.down && player.body.velocity.x != 0){
+	    	emitter.x = player.x + 15;
+    		emitter.y = player.y + 25;
+
+			emitter.start(true, 100, null, 1);
+	    }
 	     // overlaps
 	    game.physics.arcade.overlap(player, killers, this.die, null, this);
 	    game.physics.arcade.overlap(evilTwin, killers, this.win, null, this);
@@ -96,6 +110,12 @@ var playState = {
 	 		canBoostFlag = false;
 	 		arrow.kill();
 		 	setTimeout(function(){
+		 		emitter.x = player.x + 15;
+    			emitter.y = player.y + 25;
+
+				emitter.start(true, 3000, null, 500);
+
+
 		 		canBoostFlag = true;
 		 		player.body.velocity.y = -500;
 			}, 3000);
@@ -115,6 +135,11 @@ var playState = {
 
 	 die: function(){
 	 	if(!hasWon){
+	 		emitter.x = player.x + 15;
+    		emitter.y = player.y + 25;
+			emitter.start(true, 600, null, 600);
+
+
 	 		isDead = true;
 		 	game.sound.play('die');
 		 	player.kill();
