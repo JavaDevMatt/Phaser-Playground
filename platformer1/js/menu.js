@@ -34,7 +34,7 @@ var menuState = {
 		music.volume = 0.5;
 		game.sound.play('splash');
 		console.log('dummy startGame');
-		game.state.start('play');
+		game.state.start('level01');
 	},
 
 };
