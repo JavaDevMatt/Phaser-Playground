@@ -29,4 +29,12 @@ class Level1{
         platforms.create(928, 300, 'platform');
         platforms.create(1049, 300, 'platform');
  	 }
+
+ 	 addKillers(killers){
+ 	 	killers.create(141, 332, 'lava');
+        killers.create(338, 332, 'lava');
+        killers.create(394, 332, 'lava');
+        killers.create(450, 332, 'lava');
+        killers.create(1190, 332, 'lava');
+ 	 }
 }

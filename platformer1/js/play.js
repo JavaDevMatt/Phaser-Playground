@@ -1,56 +1,36 @@
 var playState = {
 
+	 resetState: function(){
+	 	canBoostFlag = true;
+	 },
 
 	 create: function() {	 
-	 	
-	 	canBoostFlag = true;
-
 	 	level = new Level1();
+	 	collisionsHandler = new CollisionsHandler();
 
+	 	this.resetState();
 	 	level.createBackground(game);
 
+	 	// TODO add arrow to arrows group
 	 	arrow = game.add.sprite(10, 270, 'arrow');
    		game.physics.arcade.enable(arrow);
    		arrow.body.immovable = true;
 
-	 	player = game.add.sprite(level.playerStartingX, level.playerStartingY, 'monster1');
-		player.animations.add('stand', [0, 1, 2], 5, true);
-		game.physics.arcade.enable(player);
-		player.body.bounce.y = 0.2;
-   		player.body.gravity.y = 300;
-        player.body.collideWorldBounds = true;
+   		this.initPlayer();
+		this.initEvilTwin();
+		this.initTrampolines();
+		this.initPlatforms();
+		this.initKillers();
 
-		evilTwin = game.add.sprite(level.evilTwinStartingX, level.evilTwinStartingY, 'monster1');
-		evilTwin.animations.add('stand', [0, 1, 2], 5, true);
-		game.physics.arcade.enable(evilTwin);
-		evilTwin.body.bounce.y = 0.2;
-   		evilTwin.body.gravity.y = 300;
-        evilTwin.body.collideWorldBounds = true;
-
-        trampolines = game.add.group();
-        trampolines.enableBody = true;
-        game.physics.arcade.enable(trampolines);
-        level.addTrampolines(trampolines);
-   		trampolines.forEachAlive(function(item) {
-   			item.body.bounce.y = 0.2;
-   			item.body.gravity.y = 300;
-   			item.body.collideWorldBounds = true;
-		}, this);
-		
-
-        platforms = game.add.group();
-        platforms.enableBody = true;
-        level.addtPlatforms(platforms);
-        platforms.forEachAlive(function(item) {
-        	item.body.immovable = true;
-		}, this);
-
+		// TODO add fallers to fallers group
         faller = game.add.sprite(420, 282, 'faller');
         game.physics.arcade.enable(faller);
 
+        // TODO add slowFaller to slowFallers group
         slowFaller = game.add.sprite(120, 162, 'faller');
         game.physics.arcade.enable(slowFaller);
 
+        // TODO add rider to riders group
         rider = game.add.sprite(290, 50, 'faller');
         game.physics.arcade.enable(rider);
         rider.body.immovable = true;
@@ -58,24 +38,9 @@ var playState = {
         rider.body.collideWorldBounds = true;
         rider.body.velocity.setTo(-100, 0);
 
-
-        killers = game.add.group();
-        killers.enableBody = true;
-        killers.create(141, 332, 'lava');
-        killers.create(338, 332, 'lava');
-        killers.create(394, 332, 'lava');
-        killers.create(450, 332, 'lava');
-        killers.create(1190, 332, 'lava');
-
-        killers.forEachAlive(function(item) {
-       	 	item.body.immovable = true;
-       	 	item.animations.add('stand', [0, 1], 2, true);
-		}, this);
-       
         cursors = game.input.keyboard.createCursorKeys();
+        
         game.camera.follow(player); 
-
-        collisionsHandler = new CollisionsHandler();
 	 },
 
 	 update: function() {   
@@ -154,6 +119,55 @@ var playState = {
 	 		game.state.start('menu');
 		}, 2000);
 	 	
+	 },
+
+	 initPlayer: function(){
+		player = game.add.sprite(level.playerStartingX, level.playerStartingY, 'monster1');
+		player.animations.add('stand', [0, 1, 2], 5, true);
+		game.physics.arcade.enable(player);
+		player.body.bounce.y = 0.2;
+   		player.body.gravity.y = 300;
+        player.body.collideWorldBounds = true;
+	 },
+
+	 initEvilTwin: function(){
+		evilTwin = game.add.sprite(level.evilTwinStartingX, level.evilTwinStartingY, 'monster1');
+		evilTwin.animations.add('stand', [0, 1, 2], 5, true);
+		game.physics.arcade.enable(evilTwin);
+		evilTwin.body.bounce.y = 0.2;
+   		evilTwin.body.gravity.y = 300;
+        evilTwin.body.collideWorldBounds = true;
+	 },
+
+	 initTrampolines: function(){
+		trampolines = game.add.group();
+        trampolines.enableBody = true;
+        game.physics.arcade.enable(trampolines);
+        level.addTrampolines(trampolines);
+   		trampolines.forEachAlive(function(item) {
+   			item.body.bounce.y = 0.2;
+   			item.body.gravity.y = 300;
+   			item.body.collideWorldBounds = true;
+		}, this);
+	 },
+
+	 initPlatforms: function(){
+		platforms = game.add.group();
+        platforms.enableBody = true;
+        level.addtPlatforms(platforms);
+        platforms.forEachAlive(function(item) {
+        	item.body.immovable = true;
+		}, this);
+	 },
+
+	 initKillers: function(){
+	 	killers = game.add.group();
+        killers.enableBody = true;
+        level.addKillers(killers);
+        killers.forEachAlive(function(item) {
+       	 	item.body.immovable = true;
+       	 	item.animations.add('stand', [0, 1], 2, true);
+		}, this);
 	 },
 
 };
