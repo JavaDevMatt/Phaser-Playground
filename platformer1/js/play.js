@@ -2,6 +2,8 @@ var playState = {
 
 	 resetState: function(){
 	 	canBoostFlag = true;
+	 	isDead = false;
+	 	hasWon = false;
 	 },
 
 	 chooseLevel: function(){
@@ -112,34 +114,38 @@ var playState = {
 	 },
 
 	 die: function(){
-	 	game.sound.play('die');
-	 	player.kill();
-	 	setTimeout(function(){
-	 		game.state.start('play');
-		}, 600);
-	 	
+	 	if(!hasWon){
+	 		isDead = true;
+		 	game.sound.play('die');
+		 	player.kill();
+		 	setTimeout(function(){
+		 		game.state.start('play');
+			}, 600);
+	 	}
 	 },
 
 	 win: function(){
-	 	// if(gameLevel == 1){
+	 	if(!isDead){
+	 		hasWon = true;
 	 		game.add.text(player.x - 200, 100, 'Great!', 
 			{font: '40px Courier', fill: '#fff'});
 	 		game.add.text(player.x - 200, 136, 'Time for the next one....', 
 			{font: '20px Courier', fill: '#fff'});
 	 	// }
 	 	
-	 	game.sound.play('splash');
-	 	gameLevel++;
-	 	evilTwin.kill();
-	 	setTimeout(function(){
-	 		if(gameLevel >= 3){
-	 			gameLevel = 1;
-	 			game.state.start('menu');
-	 		} else {
-	 			game.state.start('play');
-	 		}
-	 		
-		}, 3000);
+		 	game.sound.play('splash');
+		 	gameLevel++;
+		 	evilTwin.kill();
+		 	setTimeout(function(){
+		 		if(gameLevel >= 3){
+		 			gameLevel = 1;
+		 			game.state.start('menu');
+		 		} else {
+		 			game.state.start('play');
+		 		}
+		 		
+			}, 3000);
+	 	}
 	 	
 	 },
 
