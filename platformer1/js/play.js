@@ -10,6 +10,8 @@ var playState = {
 	 	if(gameLevel == 1){
 	 		return level = new Level1();
 	 	} else {
+	 		// music.stop();
+	 		// music = game.sound.play('music2');
 	 		return level = new Level2();
 	 	}
 	 },

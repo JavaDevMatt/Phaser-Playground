@@ -5,6 +5,7 @@ var menuState = {
 		if(music != null){
 			music.stop();
 		}
+
 		music = game.sound.play('music');
 		music.volume = 1.0;
 		game.add.sprite(0, 0, 'background');

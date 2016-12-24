@@ -7,6 +7,9 @@ var initState = {
 
 		// add content loadin here
 		game.load.audio('music', 'assets/music.mp3'); // http://opengameart.org/content/rise-of-spirit
+		game.load.audio('music2', 'assets/music2.mp3'); // http://opengameart.org/content/tragic-ambient-main-menu
+		
+
 		game.load.image('background', 'assets/background.png'); // http://opengameart.org/content/industrial-parallax-background
 		game.load.image('background2', 'assets/background2.png');
 		game.load.image('platform', 'assets/platform.png');
