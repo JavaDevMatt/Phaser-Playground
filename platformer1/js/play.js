@@ -30,9 +30,7 @@ var playState = {
         trampolines = game.add.group();
         trampolines.enableBody = true;
         game.physics.arcade.enable(trampolines);
-
-        trampolines.create(240, 270, 'trampoline');
-        trampolines.create(280, 270, 'trampoline');
+        level.addTrampolines(trampolines);
    		trampolines.forEachAlive(function(item) {
    			item.body.bounce.y = 0.2;
    			item.body.gravity.y = 300;
@@ -42,14 +40,7 @@ var playState = {
 
         platforms = game.add.group();
         platforms.enableBody = true;
-        platforms.create(0, 300, 'platform');
-        platforms.create(197, 300, 'platform');
-        platforms.create(506, 300, 'platform');
-        platforms.create(646, 300, 'platform');
-        platforms.create(787, 300, 'platform');
-        platforms.create(928, 300, 'platform');
-        platforms.create(1049, 300, 'platform');
-
+        level.addtPlatforms(platforms);
         platforms.forEachAlive(function(item) {
         	item.body.immovable = true;
 		}, this);
