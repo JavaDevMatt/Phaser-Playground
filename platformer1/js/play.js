@@ -26,8 +26,8 @@ var playState = {
    		this.initPlayer();
 		this.initEvilTwin();
 		this.initTrampolines();
-		this.initPlatforms();
 		this.initKillers();
+		this.initPlatforms();
 		this.initArrows();
 		this.initFallers();
 		this.initSlowFallers();
