@@ -17,7 +17,7 @@ class Level1{
 
  	 addTrampolines(trampolines){
  	 	trampolines.create(240, 270, 'trampoline');
-        trampolines.create(280, 270, 'trampoline');
+        trampolines.create(150, 50, 'trampoline');
  	 }
 
  	 addtPlatforms(platforms){
