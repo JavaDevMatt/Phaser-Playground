@@ -154,7 +154,7 @@ var playState = {
 
 
 	 		isDead = true;
-		 	game.sound.play('die');
+		 	game.sound.play('splash-death');
 		 	player.kill();
 		 	setTimeout(function(){
 		 		game.state.start('play');
@@ -175,7 +175,7 @@ var playState = {
 			{font: '20px Courier', fill: '#fff'});
 	 	// }
 	 	
-		 	game.sound.play('splash');
+		 	game.sound.play('splash-death');
 		 	gameLevel++;
 		 	evilTwin.kill();
 		 	setTimeout(function(){

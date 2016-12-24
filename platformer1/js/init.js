@@ -27,7 +27,9 @@ var initState = {
 		game.load.spritesheet('lava', 'assets/lava.png', 56, 32);
 		game.load.spritesheet('lava2', 'assets/lava2.png', 252, 32); 
 
+		//
 		game.load.audio('splash', 'assets/splash.mp3'); // http://opengameart.org/content/lava-splash
+		game.load.audio('splash-death', 'assets/splash-death.mp3'); // http://freesound.org/people/Setuniman/sounds/135774/
 		game.load.audio('ding', 'assets/ding.mp3'); // http://freesound.org/people/gloriaeffect/sounds/108428/
 		game.load.audio('jump', 'assets/jump.mp3');
 		game.load.audio('trampoline_jump', 'assets/trampoline_jump.mp3'); // http://freesound.org/people/arteffect/sounds/349854/
