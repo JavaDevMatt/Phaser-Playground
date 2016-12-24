@@ -109,11 +109,16 @@ var playState = {
 	 },
 
 	 win: function(){
+	 	if(gameLevel == 1){
+	 		game.add.text(player.x - 400, 100, 'Great!', 
+			{font: '40px Courier', fill: '#fff'});
+	 		game.add.text(player.x - 400, 136, 'Time for the next one....', 
+			{font: '20px Courier', fill: '#fff'});
+	 	}
+	 	
 	 	game.sound.play('splash');
 	 	gameLevel++;
 	 	evilTwin.x = -1000;
-	 	var loadingLabel = game.add.text(player.x - 200, 100, 'YOU WIN', 
-			{font: '40px Courier', fill: '#fff'});
 	 	setTimeout(function(){
 	 		if(gameLevel >= 3){
 	 			gameLevel = 1;
@@ -122,7 +127,7 @@ var playState = {
 	 			game.state.start('play');
 	 		}
 	 		
-		}, 2000);
+		}, 3000);
 	 	
 	 },
 
