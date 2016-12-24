@@ -45,6 +45,10 @@ var playState = {
    		emitter2.makeParticles('particle2');
 		emitter2.gravity = 50;
 
+		emitterRed = game.add.emitter(0, 0, 100);
+   		emitterRed.makeParticles('red-particle');
+		emitterRed.gravity = 50;
+
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -160,6 +164,10 @@ var playState = {
 
 	 win: function(){
 	 	if(!isDead){
+	 		emitterRed.x = evilTwin.x + 15;
+    		emitterRed.y = evilTwin.y + 25;
+			emitterRed.start(true, 3000, null, 600);
+
 	 		hasWon = true;
 	 		game.add.text(player.x - 200, 100, 'Great!', 
 			{font: '40px Courier', fill: '#fff'});
