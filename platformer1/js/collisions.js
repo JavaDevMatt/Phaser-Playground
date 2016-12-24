@@ -12,6 +12,7 @@ class CollisionsHandler{
 	 	game.physics.arcade.collide(player, trampolines);
 	 	game.physics.arcade.collide(trampolines, platforms);
 	 	game.physics.arcade.collide(slowFaller, trampolines);
+	 	game.physics.arcade.collide(trampolines, trampolines);
 	}
 
 }
