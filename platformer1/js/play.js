@@ -5,10 +5,12 @@ var playState = {
 	 },
 
 	 chooseLevel: function(){
+	 	return level = new Level2();
+
 	 	if(gameLevel == 1){
-			return level = new LevelPrototype();
-	 	} else {
 	 		return level = new Level1();
+	 	} else {
+	 		return level = new LevelPrototype();
 	 	}
 	 },
 
@@ -79,6 +81,8 @@ var playState = {
 	    game.physics.arcade.overlap(player, trampolines, this.trampolinePlayer, null, this);
 	    game.physics.arcade.overlap(player, arrows, this.arrowBoost, null, this);
 
+	    level.handleRidersLogic();
+
 	 },
 
 	 arrowBoost: function(player, arrow){
@@ -101,7 +105,7 @@ var playState = {
 
 	 die: function(){
 	 	game.sound.play('die');
-	 	player.x = -1000;
+	 	player.kill();
 	 	setTimeout(function(){
 	 		game.state.start('play');
 		}, 600);
@@ -118,7 +122,7 @@ var playState = {
 	 	
 	 	game.sound.play('splash');
 	 	gameLevel++;
-	 	evilTwin.x = -1000;
+	 	evilTwin.kill();
 	 	setTimeout(function(){
 	 		if(gameLevel >= 3){
 	 			gameLevel = 1;

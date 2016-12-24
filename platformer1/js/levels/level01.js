@@ -1,61 +1,62 @@
 class Level1{
 
 	 constructor() {
-	 	this.playerStartingX = 80;
+	 	this.playerStartingX = 10;
 	 	this.playerStartingY = 10;
 
-	 	this.evilTwinStartingX = 560;
+	 	this.evilTwinStartingX = 670;
 	 	this.evilTwinStartingY = 10;
  	 }
 
- 	 addStartingText(game){
-           // no text
+         addStartingText(game){
+                var loadingLabel = game.add.text(80, 278, 'Kill the evil slime!', 
+                        {font: '20px Courier', fill: '#fff'});
+                setTimeout(function(){
+                        loadingLabel.kill();
+                }, 8000);
          }
 
  	 createBackground(game){
- 	 	game.world.setBounds(0, 0, 1245, 376);
+ 	 	game.world.setBounds(0, 0, 745, 376);
 
  	 	game.add.sprite(0, 0, 'background2');
 	 	game.add.sprite(640, 0, 'background2');
  	 }
 
  	 addTrampolines(trampolines){
- 	 	trampolines.create(240, 270, 'trampoline');
-        trampolines.create(150, 50, 'trampoline');
+ 	 	trampolines.create(600, 270, 'trampoline');
  	 }
 
  	 addtPlatforms(platforms){
  	 	platforms.create(0, 300, 'platform');
-        platforms.create(197, 300, 'platform');
-        platforms.create(506, 300, 'platform');
-        platforms.create(646, 300, 'platform');
-        platforms.create(787, 300, 'platform');
-        platforms.create(928, 300, 'platform');
-        platforms.create(1049, 300, 'platform');
+                platforms.create(197, 300, 'platform2');
+                platforms.create(506, 300, 'platform');
+                platforms.create(646, 300, 'platform');
+                platforms.create(646, 112, 'tower1');
  	 }
 
  	 addKillers(killers){
  	 	killers.create(141, 332, 'lava');
-        killers.create(338, 332, 'lava');
-        killers.create(394, 332, 'lava');
-        killers.create(450, 332, 'lava');
-        killers.create(1190, 332, 'lava');
+                killers.create(254, 332, 'lava2');
  	 }
 
  	 addArrows(arrows){
- 	 	arrows.create(10, 270, 'arrow');
-	 	arrows.create(300, 270, 'arrow');
+ 	 	// arrows.create(10, 270, 'arrow');
  	 } 
 
  	 addFallers(fallers){
- 	 	fallers.create(420, 282, 'faller');
+ 	 	fallers.create(340, 282, 'faller');
  	 }
 
- 	 addSlowFallers(slowFallers){
-        slowFallers.create(120, 162, 'faller');
-     }
+         addSlowFallers(slowFallers){
+                // slowFallers.create(120, 162, 'faller');
+         } 
 
-     addRiders(riders){
-         riders.create(290, 50, 'faller');
-     }
+         addRiders(riders){
+                // riders.create(290, 50, 'faller');
+         }
+
+    handleRidersLogic(){
+         
+         }
 }
