@@ -1,10 +1,8 @@
 var playState = {
 
 
-
 	 create: function() {	
-	 	collisionsHandler = new CollisionsHandler();
-
+	 	
 	 	canBoostFlag = true;
 
 	 	game.world.setBounds(0, 0, 1245, 376);
@@ -23,12 +21,12 @@ var playState = {
    		player.body.gravity.y = 300;
         player.body.collideWorldBounds = true;
 
-		goal = game.add.sprite(560, 10, 'monster1');
-		goal.animations.add('stand', [0, 1, 2], 5, true);
-		game.physics.arcade.enable(goal);
-		goal.body.bounce.y = 0.2;
-   		goal.body.gravity.y = 300;
-        goal.body.collideWorldBounds = true;
+		evilTwin = game.add.sprite(560, 10, 'monster1');
+		evilTwin.animations.add('stand', [0, 1, 2], 5, true);
+		game.physics.arcade.enable(evilTwin);
+		evilTwin.body.bounce.y = 0.2;
+   		evilTwin.body.gravity.y = 300;
+        evilTwin.body.collideWorldBounds = true;
 
         trampolines = game.add.group();
         trampolines.enableBody = true;
@@ -86,13 +84,15 @@ var playState = {
        
         cursors = game.input.keyboard.createCursorKeys();
         game.camera.follow(player); 
+
+        collisionsHandler = new CollisionsHandler();
 	 },
 
 	 update: function() {   
 	 	collisionsHandler.update()
 
 	 	player.animations.play('stand');
-	 	goal.animations.play('stand');
+	 	evilTwin.animations.play('stand');
 
 	 	killers.forEachAlive(function(item) {
        	 	item.animations.play('stand');
@@ -117,7 +117,7 @@ var playState = {
 	    }
 
 	    game.physics.arcade.overlap(player, killers, this.die, null, this);
-	    game.physics.arcade.overlap(goal, killers, this.win, null, this);
+	    game.physics.arcade.overlap(evilTwin, killers, this.win, null, this);
 
 	    game.physics.arcade.overlap(player, trampolines, this.trampolinePlayer, null, this);
 	    trampolines.forEachAlive(function(item) {
@@ -157,7 +157,7 @@ var playState = {
 
 	 win: function(){
 	 	game.sound.play('splash');
-	 	goal.x = -1000;
+	 	evilTwin.x = -1000;
 	 	var loadingLabel = game.add.text(player.x - 100, player.y - 150, 'YOU WIN', 
 			{font: '40px Courier', fill: '#fff'});
 	 	setTimeout(function(){
