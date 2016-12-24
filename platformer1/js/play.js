@@ -106,6 +106,12 @@ var playState = {
 
 	    level.handleRidersLogic();
 
+	    if(!canBoostFlag){
+	    	emitter2.x = player.x + 15;
+    		emitter2.y = player.y + 24;
+
+			emitter2.start(true, 70, null, 10);
+	    }
 	 },
 
 	 arrowBoost: function(player, arrow){
@@ -138,9 +144,9 @@ var playState = {
 
 	 die: function(){
 	 	if(!hasWon){
-	 		emitter.x = player.x + 15;
-    		emitter.y = player.y + 25;
-			emitter.start(true, 600, null, 600);
+	 		emitter2.x = player.x + 15;
+    		emitter2.y = player.y + 25;
+			emitter2.start(true, 600, null, 600);
 
 
 	 		isDead = true;
