@@ -43,20 +43,17 @@ var playState = {
 
         platforms = game.add.group();
         platforms.enableBody = true;
-        var platform1 = platforms.create(0, 300, 'platform');
-        platform1.body.immovable = true;
-        var platform2 = platforms.create(197, 300, 'platform');
-        platform2.body.immovable = true;
-        var platform3 = platforms.create(506, 300, 'platform');
-        platform3.body.immovable = true;
-        var platform4 = platforms.create(646, 300, 'platform');
-        platform4.body.immovable = true;
-        var platform5 = platforms.create(787, 300, 'platform');
-        platform5.body.immovable = true;
-        var platform6 = platforms.create(928, 300, 'platform');
-        platform6.body.immovable = true;
-        var platform7 = platforms.create(1049, 300, 'platform');
-        platform7.body.immovable = true;
+        platforms.create(0, 300, 'platform');
+        platforms.create(197, 300, 'platform');
+        platforms.create(506, 300, 'platform');
+        platforms.create(646, 300, 'platform');
+        platforms.create(787, 300, 'platform');
+        platforms.create(928, 300, 'platform');
+        platforms.create(1049, 300, 'platform');
+
+        platforms.forEachAlive(function(item) {
+        	item.body.immovable = true;
+		}, this);
 
         faller = game.add.sprite(420, 282, 'faller');
         game.physics.arcade.enable(faller);
