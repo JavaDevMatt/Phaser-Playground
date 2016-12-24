@@ -5,12 +5,12 @@ var playState = {
 	 },
 
 	 chooseLevel: function(){
-	 	return level = new Level2();
+	 	// return level = new Level2();
 
 	 	if(gameLevel == 1){
 	 		return level = new Level1();
 	 	} else {
-	 		return level = new LevelPrototype();
+	 		return level = new Level2();
 	 	}
 	 },
 
@@ -119,12 +119,12 @@ var playState = {
 	 },
 
 	 win: function(){
-	 	if(gameLevel == 1){
-	 		game.add.text(player.x - 400, 100, 'Great!', 
+	 	// if(gameLevel == 1){
+	 		game.add.text(player.x - 200, 100, 'Great!', 
 			{font: '40px Courier', fill: '#fff'});
-	 		game.add.text(player.x - 400, 136, 'Time for the next one....', 
+	 		game.add.text(player.x - 200, 136, 'Time for the next one....', 
 			{font: '20px Courier', fill: '#fff'});
-	 	}
+	 	// }
 	 	
 	 	game.sound.play('splash');
 	 	gameLevel++;

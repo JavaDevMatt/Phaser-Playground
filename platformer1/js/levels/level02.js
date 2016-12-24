@@ -1,11 +1,9 @@
 class Level2{
 
-
-
 	constructor() {
         this.rider1;
 
-	 	this.playerStartingX = 1200;
+	 	this.playerStartingX = 10;
 	 	this.playerStartingY = 10;
 
 
