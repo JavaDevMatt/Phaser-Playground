@@ -5,7 +5,12 @@ var playState = {
 	 },
 
 	 create: function() {	 
-	 	level = new LevelPrototype();
+	 	if(gameLevel == 1){
+			level = new LevelPrototype();
+	 	} else {
+	 		level = new Level1();
+	 	}
+	 	
 	 	collisionsHandler = new CollisionsHandler();
 
 	 	this.resetState();
@@ -18,10 +23,7 @@ var playState = {
 		this.initPlatforms();
 		this.initKillers();
 		this.initArrows();
-
-		fallers = game.add.group();
-		fallers.enableBody = true;
-        level.addFallers(fallers);
+		this.initFallers();
 
         // TODO add slowFaller to slowFallers group
         slowFaller = game.add.sprite(120, 162, 'faller');
@@ -111,11 +113,17 @@ var playState = {
 
 	 win: function(){
 	 	game.sound.play('splash');
+	 	gameLevel++;
 	 	evilTwin.x = -1000;
 	 	var loadingLabel = game.add.text(player.x - 200, 100, 'YOU WIN', 
 			{font: '40px Courier', fill: '#fff'});
 	 	setTimeout(function(){
-	 		game.state.start('menu');
+	 		if(gameLevel >= 3){
+	 			game.state.start('menu');
+	 		} else {
+	 			game.state.start('play');
+	 		}
+	 		
 		}, 2000);
 	 	
 	 },
@@ -177,6 +185,12 @@ var playState = {
    		arrows.forEachAlive(function(item) {
        	 	item.body.immovable = true;
 		}, this);
+	 },
+
+	 initFallers: function(){
+	 	fallers = game.add.group();
+		fallers.enableBody = true;
+        level.addFallers(fallers);
 	 },
 
 };

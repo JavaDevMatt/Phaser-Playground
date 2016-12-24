@@ -8,6 +8,10 @@ class Level1{
 	 	this.evilTwinStartingY = 10;
  	 }
 
+ 	 addStartingText(game){
+           // no text
+         }
+
  	 createBackground(game){
  	 	game.world.setBounds(0, 0, 1245, 376);
 
