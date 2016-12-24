@@ -39,48 +39,50 @@ var playState = {
         rider.body.velocity.setTo(-100, 0);
 
         cursors = game.input.keyboard.createCursorKeys();
-        
+
         game.camera.follow(player); 
 	 },
 
 	 update: function() {   
+	 	// collisios
 	 	collisionsHandler.update()
 
+	 	// animations
 	 	player.animations.play('stand');
 	 	evilTwin.animations.play('stand');
-
 	 	killers.forEachAlive(function(item) {
        	 	item.animations.play('stand');
 		}, this);
 
-	 	slowFaller.body.velocity.x = 0;
+
+	   
+	    // preventing "free move"
+	    player.body.velocity.x = 0;
+	    trampolines.forEachAlive(function(item) {
+	    	item.body.velocity.x = 0;
+		}, this);
+	    faller.body.velocity.x = 0;
+	    slowFaller.body.velocity.x = 0;
 	 	slowFaller.body.velocity.y = 0;
 
-		player.body.velocity.x = 0;
-		if (cursors.left.isDown) 
-		{
+	    // controls
+	    if (cursors.left.isDown){
 	        player.body.velocity.x = -150;
 	    }
-	    else if (cursors.right.isDown) 
-	    {
+	    else if (cursors.right.isDown){
 	        player.body.velocity.x = 150;
 	    }
-	    if (cursors.up.isDown && player.body.touching.down)
-	    {
+	    if (cursors.up.isDown && player.body.touching.down){
 	    	game.sound.play('jump');
 	        player.body.velocity.y = -150;
 	    }
 
+	     // overlaps
 	    game.physics.arcade.overlap(player, killers, this.die, null, this);
 	    game.physics.arcade.overlap(evilTwin, killers, this.win, null, this);
-
 	    game.physics.arcade.overlap(player, trampolines, this.trampolinePlayer, null, this);
-	    trampolines.forEachAlive(function(item) {
-	    	item.body.velocity.x = 0;
-		}, this);
-
-	    faller.body.velocity.x = 0;
 	    game.physics.arcade.overlap(player, arrow, null, this.arrowBoost, this);
+
 	 },
 
 	 arrowBoost: function(){
