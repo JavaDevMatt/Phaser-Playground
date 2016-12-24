@@ -1,5 +1,7 @@
 var playState = {
 
+
+
 	 create: function() {	
 	 	collisionsHandler = new CollisionsHandler();
 
@@ -71,23 +73,17 @@ var playState = {
 
         killers = game.add.group();
         killers.enableBody = true;
-        lava = killers.create(141, 332, 'lava');
-        lava.body.immovable = true;
-        lava2 = killers.create(338, 332, 'lava');
-        lava2.body.immovable = true;
-        lava3 = killers.create(394, 332, 'lava');
-        lava3.body.immovable = true;
-        lava4 = killers.create(450, 332, 'lava');
-        lava4.body.immovable = true;
-        lava5 = killers.create(1190, 332, 'lava');
-        lava5.body.immovable = true;
-       
-        lava.animations.add('stand', [0, 1], 2, true);
-        lava2.animations.add('stand', [0, 1], 2, true);
-        lava3.animations.add('stand', [0, 1], 2, true);
-        lava4.animations.add('stand', [0, 1], 2, true);
-        lava5.animations.add('stand', [0, 1], 2, true);
+        killers.create(141, 332, 'lava');
+        killers.create(338, 332, 'lava');
+        killers.create(394, 332, 'lava');
+        killers.create(450, 332, 'lava');
+        killers.create(1190, 332, 'lava');
 
+        killers.forEachAlive(function(item) {
+       	 	item.body.immovable = true;
+       	 	item.animations.add('stand', [0, 1], 2, true);
+		}, this);
+       
         cursors = game.input.keyboard.createCursorKeys();
         game.camera.follow(player); 
 	 },
@@ -97,11 +93,10 @@ var playState = {
 
 	 	player.animations.play('stand');
 	 	goal.animations.play('stand');
-	 	lava.animations.play('stand');
-	 	lava2.animations.play('stand');
-	 	lava3.animations.play('stand');
-	 	lava4.animations.play('stand');
-	 	lava5.animations.play('stand');
+
+	 	killers.forEachAlive(function(item) {
+       	 	item.animations.play('stand');
+		}, this);
 
 	 	slowFaller.body.velocity.x = 0;
 	 	slowFaller.body.velocity.y = 0;
