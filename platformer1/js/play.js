@@ -29,14 +29,8 @@ var playState = {
 		this.initArrows();
 		this.initFallers();
 		this.initSlowFallers();
+		this.initRiders();
 
-        // TODO add rider to riders group
-        rider = game.add.sprite(290, 50, 'faller');
-        game.physics.arcade.enable(rider);
-        rider.body.immovable = true;
-        rider.body.bounce.setTo(1, 1);
-        rider.body.collideWorldBounds = true;
-        rider.body.velocity.setTo(-100, 0);
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -202,5 +196,19 @@ var playState = {
 		slowFallers.enableBody = true;
         level.addSlowFallers(slowFallers);
 	 },
+
+	 initRiders: function(){
+		riders = game.add.group();
+        riders.enableBody = true;
+        game.physics.arcade.enable(riders);
+        level.addRiders(riders);
+        riders.forEachAlive(function(item) {
+        	item.body.immovable = true;
+        	item.body.bounce.setTo(1, 1);
+       		item.body.collideWorldBounds = true;
+        	item.body.velocity.setTo(-100, 0);
+		}, this);
+	 },
+
 
 };

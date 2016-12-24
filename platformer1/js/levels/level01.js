@@ -54,4 +54,8 @@ class Level1{
  	 addSlowFallers(slowFallers){
         slowFallers.create(120, 162, 'faller');
      }
+
+     addRiders(riders){
+         riders.create(290, 50, 'faller');
+     }
 }
