@@ -10,12 +10,16 @@ var initState = {
 		game.load.image('background', 'assets/background.png'); // http://opengameart.org/content/industrial-parallax-background
 		game.load.image('background2', 'assets/background2.png');
 		game.load.image('platform', 'assets/platform.png');
+		game.load.image('platform2', 'assets/platform2.png');
+		game.load.image('tower1', 'assets/tower1.png');
 		game.load.image('faller', 'assets/faller.png'); 
 		game.load.image('trampoline', 'assets/trampoline.png');
 		game.load.image('arrow', 'assets/arrow.png');
 
 		game.load.spritesheet('monster1', 'assets/monster1.png', 30, 23); // http://opengameart.org/content/scifi-creature-tileset-mini-32x32-scifi-creature-icons 
-		game.load.spritesheet('lava', 'assets/lava.png', 56, 32); 
+		game.load.spritesheet('monster2', 'assets/monster2.png', 30, 23);
+		game.load.spritesheet('lava', 'assets/lava.png', 56, 32);
+		game.load.spritesheet('lava2', 'assets/lava2.png', 252, 32); 
 
 		game.load.audio('splash', 'assets/splash.mp3'); // http://opengameart.org/content/lava-splash
 		game.load.audio('ding', 'assets/ding.mp3'); // http://freesound.org/people/gloriaeffect/sounds/108428/

@@ -5,7 +5,7 @@ var playState = {
 	 },
 
 	 create: function() {	 
-	 	level = new Level1();
+	 	level = new LevelPrototype();
 	 	collisionsHandler = new CollisionsHandler();
 
 	 	this.resetState();
@@ -18,7 +18,6 @@ var playState = {
 		this.initKillers();
 		this.initArrows();
 
-		// TODO add fallers to fallers group
 		fallers = game.add.group();
 		fallers.enableBody = true;
         level.addFallers(fallers);
@@ -112,7 +111,7 @@ var playState = {
 	 win: function(){
 	 	game.sound.play('splash');
 	 	evilTwin.x = -1000;
-	 	var loadingLabel = game.add.text(player.x - 100, player.y - 150, 'YOU WIN', 
+	 	var loadingLabel = game.add.text(player.x - 200, 100, 'YOU WIN', 
 			{font: '40px Courier', fill: '#fff'});
 	 	setTimeout(function(){
 	 		game.state.start('menu');
@@ -130,10 +129,11 @@ var playState = {
 	 },
 
 	 initEvilTwin: function(){
-		evilTwin = game.add.sprite(level.evilTwinStartingX, level.evilTwinStartingY, 'monster1');
+		evilTwin = game.add.sprite(level.evilTwinStartingX, level.evilTwinStartingY, 'monster2');
 		evilTwin.animations.add('stand', [0, 1, 2], 5, true);
 		game.physics.arcade.enable(evilTwin);
 		evilTwin.body.bounce.y = 0.2;
+		evilTwin.body.bounce.x = 1.0;
    		evilTwin.body.gravity.y = 300;
         evilTwin.body.collideWorldBounds = true;
 	 },
