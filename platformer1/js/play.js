@@ -41,6 +41,10 @@ var playState = {
    		emitter.makeParticles('particle');
 		emitter.gravity = 200;
 
+		emitter2 = game.add.emitter(0, 0, 100);
+   		emitter2.makeParticles('particle2');
+		emitter2.gravity = 50;
+
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -110,11 +114,10 @@ var playState = {
 	 		canBoostFlag = false;
 	 		arrow.kill();
 		 	setTimeout(function(){
-		 		emitter.x = player.x + 15;
-    			emitter.y = player.y + 25;
+		 		emitter2.x = player.x + 15;
+    			emitter2.y = player.y + 25;
 
-				emitter.start(true, 3000, null, 500);
-
+				emitter2.start(true, 5000, null, 500);
 
 		 		canBoostFlag = true;
 		 		player.body.velocity.y = -500;

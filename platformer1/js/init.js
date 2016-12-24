@@ -17,6 +17,7 @@ var initState = {
 		game.load.image('tower1', 'assets/tower1.png');
 		game.load.image('faller', 'assets/faller.png'); 
 		game.load.image('particle', 'assets/particle.png'); 
+		game.load.image('particle2', 'assets/particle2.png'); 
 		game.load.image('trampoline', 'assets/trampoline.png');
 		game.load.image('arrow', 'assets/arrow.png');
 
