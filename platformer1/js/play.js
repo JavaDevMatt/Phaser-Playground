@@ -36,19 +36,7 @@ var playState = {
 		this.initFallers();
 		this.initSlowFallers();
 		this.initRiders();
-
-		emitter = game.add.emitter(0, 0, 100);
-   		emitter.makeParticles('particle');
-		emitter.gravity = 200;
-
-		emitter2 = game.add.emitter(0, 0, 100);
-   		emitter2.makeParticles('particle2');
-		emitter2.gravity = 50;
-
-		emitterRed = game.add.emitter(0, 0, 100);
-   		emitterRed.makeParticles('red-particle');
-		emitterRed.gravity = 50;
-
+		this.initEmitters();
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -273,6 +261,20 @@ var playState = {
        		item.body.collideWorldBounds = true;
         	item.body.velocity.setTo(-100, 0);
 		}, this);
+	 },
+
+	 initEmitters: function(){
+	 	emitter = game.add.emitter(0, 0, 100);
+   		emitter.makeParticles('particle');
+		emitter.gravity = 200;
+
+		emitter2 = game.add.emitter(0, 0, 100);
+   		emitter2.makeParticles('particle2');
+		emitter2.gravity = 50;
+
+		emitterRed = game.add.emitter(0, 0, 100);
+   		emitterRed.makeParticles('red-particle');
+		emitterRed.gravity = 50;
 	 },
 
 
