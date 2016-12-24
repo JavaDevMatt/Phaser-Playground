@@ -1,6 +1,11 @@
 class Level1{
 
 	 constructor() {
+	 	this.playerStartingX = 80;
+	 	this.playerStartingY = 10;
+
+	 	this.evilTwinStartingX = 560;
+	 	this.evilTwinStartingY = 10;
  	 }
 
  	 createBackground(game){

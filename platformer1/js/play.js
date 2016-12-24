@@ -13,14 +13,14 @@ var playState = {
    		game.physics.arcade.enable(arrow);
    		arrow.body.immovable = true;
 
-	 	player = game.add.sprite(80, 10, 'monster1');
+	 	player = game.add.sprite(level.playerStartingX, level.playerStartingY, 'monster1');
 		player.animations.add('stand', [0, 1, 2], 5, true);
 		game.physics.arcade.enable(player);
 		player.body.bounce.y = 0.2;
    		player.body.gravity.y = 300;
         player.body.collideWorldBounds = true;
 
-		evilTwin = game.add.sprite(560, 10, 'monster1');
+		evilTwin = game.add.sprite(level.evilTwinStartingX, level.evilTwinStartingY, 'monster1');
 		evilTwin.animations.add('stand', [0, 1, 2], 5, true);
 		game.physics.arcade.enable(evilTwin);
 		evilTwin.body.bounce.y = 0.2;
