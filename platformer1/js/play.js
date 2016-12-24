@@ -79,6 +79,7 @@ var playState = {
 	    game.physics.arcade.overlap(player, killers, this.die, null, this);
 	    game.physics.arcade.overlap(evilTwin, killers, this.win, null, this);
 	    game.physics.arcade.overlap(player, trampolines, this.trampolinePlayer, null, this);
+	    game.physics.arcade.overlap(evilTwin, trampolines, this.trampolineTwin, null, this);
 	    game.physics.arcade.overlap(player, arrows, this.arrowBoost, null, this);
 
 	    level.handleRidersLogic();
@@ -96,6 +97,11 @@ var playState = {
 			}, 3000);
 	 	}
 	 	 
+	 },
+
+	 trampolineTwin: function(){
+	 	evilTwin.body.velocity.y -= 200;
+	 	game.sound.play('trampoline_jump');
 	 },
 
 	 trampolinePlayer: function(){
