@@ -4,12 +4,21 @@ var playState = {
 	 	canBoostFlag = true;
 	 },
 
-	 create: function() {	 
+	 chooseLevel: function(){
 	 	if(gameLevel == 1){
-			level = new LevelPrototype();
+			return level = new LevelPrototype();
 	 	} else {
-	 		level = new Level1();
+	 		return level = new Level1();
 	 	}
+	 },
+
+	 create: function() {	 
+	 	level = this.chooseLevel();
+	 	// if(gameLevel == 1){
+			// level = new LevelPrototype();
+	 	// } else {
+	 	// 	level = new Level1();
+	 	// }
 	 	
 	 	collisionsHandler = new CollisionsHandler();
 
@@ -119,6 +128,7 @@ var playState = {
 			{font: '40px Courier', fill: '#fff'});
 	 	setTimeout(function(){
 	 		if(gameLevel >= 3){
+	 			gameLevel = 1;
 	 			game.state.start('menu');
 	 		} else {
 	 			game.state.start('play');

@@ -9,11 +9,11 @@ class LevelPrototype{
  	 }
 
          addStartingText(game){
-                var loadingLabel = game.add.text(100, 200, 'Kill the evil slime!', 
-                        {font: '30px Courier', fill: '#fff'});
+                var loadingLabel = game.add.text(80, 278, 'Kill the evil slime!', 
+                        {font: '20px Courier', fill: '#fff'});
                 setTimeout(function(){
                         loadingLabel.kill();
-                }, 4000);
+                }, 8000);
          }
 
  	 createBackground(game){
