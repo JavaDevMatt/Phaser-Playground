@@ -8,6 +8,14 @@ class LevelPrototype{
 	 	this.evilTwinStartingY = 10;
  	 }
 
+         addStartingText(game){
+                var loadingLabel = game.add.text(100, 200, 'Kill the evil slime!', 
+                        {font: '30px Courier', fill: '#fff'});
+                setTimeout(function(){
+                        loadingLabel.kill();
+                }, 4000);
+         }
+
  	 createBackground(game){
  	 	game.world.setBounds(0, 0, 745, 376);
 

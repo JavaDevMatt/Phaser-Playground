@@ -10,6 +10,7 @@ var playState = {
 
 	 	this.resetState();
 	 	level.createBackground(game);
+	 	level.addStartingText(game);
 
    		this.initPlayer();
 		this.initEvilTwin();
