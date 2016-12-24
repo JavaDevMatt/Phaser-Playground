@@ -11,16 +11,12 @@ var playState = {
 	 	this.resetState();
 	 	level.createBackground(game);
 
-	 	// TODO add arrow to arrows group
-	 	arrow = game.add.sprite(10, 270, 'arrow');
-   		game.physics.arcade.enable(arrow);
-   		arrow.body.immovable = true;
-
    		this.initPlayer();
 		this.initEvilTwin();
 		this.initTrampolines();
 		this.initPlatforms();
 		this.initKillers();
+		this.initArrows();
 
 		// TODO add fallers to fallers group
         faller = game.add.sprite(420, 282, 'faller');
@@ -54,8 +50,6 @@ var playState = {
        	 	item.animations.play('stand');
 		}, this);
 
-
-	   
 	    // preventing "free move"
 	    player.body.velocity.x = 0;
 	    trampolines.forEachAlive(function(item) {
@@ -81,11 +75,11 @@ var playState = {
 	    game.physics.arcade.overlap(player, killers, this.die, null, this);
 	    game.physics.arcade.overlap(evilTwin, killers, this.win, null, this);
 	    game.physics.arcade.overlap(player, trampolines, this.trampolinePlayer, null, this);
-	    game.physics.arcade.overlap(player, arrow, null, this.arrowBoost, this);
+	    game.physics.arcade.overlap(player, arrows, this.arrowBoost, null, this);
 
 	 },
 
-	 arrowBoost: function(){
+	 arrowBoost: function(player, arrow){
 	 	if(canBoostFlag){
 	 		game.sound.play('ding')
 	 		canBoostFlag = false;
@@ -169,6 +163,15 @@ var playState = {
         killers.forEachAlive(function(item) {
        	 	item.body.immovable = true;
        	 	item.animations.add('stand', [0, 1], 2, true);
+		}, this);
+	 },
+
+	 initArrows: function(){
+	 	arrows = game.add.group();
+	 	arrows.enableBody = true;
+	 	level.addArrows(arrows);
+   		arrows.forEachAlive(function(item) {
+       	 	item.body.immovable = true;
 		}, this);
 	 },
 

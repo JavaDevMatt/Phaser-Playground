@@ -37,4 +37,9 @@ class Level1{
         killers.create(450, 332, 'lava');
         killers.create(1190, 332, 'lava');
  	 }
+
+ 	 addArrows(arrows){
+ 	 	arrows.create(10, 270, 'arrow');
+	 	arrows.create(300, 270, 'arrow');
+ 	 }
 }
