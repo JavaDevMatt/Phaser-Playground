@@ -41,5 +41,9 @@ class Level1{
  	 addArrows(arrows){
  	 	arrows.create(10, 270, 'arrow');
 	 	arrows.create(300, 270, 'arrow');
+ 	 } 
+
+ 	 addFallers(fallers){
+ 	 	fallers.create(420, 282, 'faller');
  	 }
 }

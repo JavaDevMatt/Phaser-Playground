@@ -19,8 +19,9 @@ var playState = {
 		this.initArrows();
 
 		// TODO add fallers to fallers group
-        faller = game.add.sprite(420, 282, 'faller');
-        game.physics.arcade.enable(faller);
+		fallers = game.add.group();
+		fallers.enableBody = true;
+        level.addFallers(fallers);
 
         // TODO add slowFaller to slowFallers group
         slowFaller = game.add.sprite(120, 162, 'faller');
@@ -55,7 +56,9 @@ var playState = {
 	    trampolines.forEachAlive(function(item) {
 	    	item.body.velocity.x = 0;
 		}, this);
-	    faller.body.velocity.x = 0;
+		fallers.forEachAlive(function(item) {
+	    	item.body.velocity.x = 0;
+		}, this);
 	    slowFaller.body.velocity.x = 0;
 	 	slowFaller.body.velocity.y = 0;
 
