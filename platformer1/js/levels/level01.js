@@ -50,4 +50,8 @@ class Level1{
  	 addFallers(fallers){
  	 	fallers.create(420, 282, 'faller');
  	 }
+
+ 	 addSlowFallers(slowFallers){
+        slowFallers.create(120, 162, 'faller');
+     }
 }

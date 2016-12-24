@@ -47,4 +47,8 @@ class LevelPrototype{
  	 addFallers(fallers){
  	 	fallers.create(340, 282, 'faller');
  	 }
+
+         addSlowFallers(slowFallers){
+                // slowFallers.create(120, 162, 'faller');
+         } 
 }

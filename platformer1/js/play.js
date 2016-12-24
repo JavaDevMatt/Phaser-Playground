@@ -14,11 +14,6 @@ var playState = {
 
 	 create: function() {	 
 	 	level = this.chooseLevel();
-	 	// if(gameLevel == 1){
-			// level = new LevelPrototype();
-	 	// } else {
-	 	// 	level = new Level1();
-	 	// }
 	 	
 	 	collisionsHandler = new CollisionsHandler();
 
@@ -33,10 +28,7 @@ var playState = {
 		this.initKillers();
 		this.initArrows();
 		this.initFallers();
-
-        // TODO add slowFaller to slowFallers group
-        slowFaller = game.add.sprite(120, 162, 'faller');
-        game.physics.arcade.enable(slowFaller);
+		this.initSlowFallers();
 
         // TODO add rider to riders group
         rider = game.add.sprite(290, 50, 'faller');
@@ -70,9 +62,11 @@ var playState = {
 		fallers.forEachAlive(function(item) {
 	    	item.body.velocity.x = 0;
 		}, this);
-	    slowFaller.body.velocity.x = 0;
-	 	slowFaller.body.velocity.y = 0;
-
+		slowFallers.forEachAlive(function(item) {
+	    	item.body.velocity.x = 0;
+	 		item.body.velocity.y = 0;
+		}, this);
+	    
 	    // controls
 	    if (cursors.left.isDown){
 	        player.body.velocity.x = -150;
@@ -201,6 +195,12 @@ var playState = {
 	 	fallers = game.add.group();
 		fallers.enableBody = true;
         level.addFallers(fallers);
+	 },
+
+	 initSlowFallers: function(){
+	 	slowFallers = game.add.group();
+		slowFallers.enableBody = true;
+        level.addSlowFallers(slowFallers);
 	 },
 
 };
