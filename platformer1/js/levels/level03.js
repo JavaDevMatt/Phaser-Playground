@@ -27,7 +27,7 @@ class Level3{
      }
 
      addRedSlimes(redSlimes){
-        redSlimes.create(330, 10, 'monster2');
+        redSlimes.create(350, 10, 'monster2');
         redSlimes.create(560, 10, 'monster2');
      }
 
