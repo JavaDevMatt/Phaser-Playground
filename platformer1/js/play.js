@@ -108,6 +108,7 @@ var playState = {
 
 	    level.handleRidersLogic();
 
+	    // boost indicator
 	    if(!canBoostFlag){
 	    	emitter2.x = player.x + 15;
     		emitter2.y = player.y + 24;
@@ -121,7 +122,26 @@ var playState = {
 	 		game.sound.play('ding')
 	 		canBoostFlag = false;
 	 		arrow.kill();
+
+	 		var l1 = game.add.text(player.x + 5, player.y - 30, '3!', 
+                {font: '20px Courier', fill: '#fff'});
+
+	 		var l2, l3;
+
+	 		setTimeout(function(){
+	 			l1.kill();
+	 			l2 = game.add.text(player.x + 5, player.y - 30, '2!', 
+                {font: '20px Courier', fill: '#fff'});
+			}, 1000);
+
+			setTimeout(function(){
+	 			l2.kill();
+	 			l3 = game.add.text(player.x + 5, player.y - 30, '1!', 
+                {font: '20px Courier', fill: '#fff'});
+			}, 2000);
+
 		 	setTimeout(function(){
+		 		l3.kill();
 		 		emitter2.x = player.x + 15;
     			emitter2.y = player.y + 25;
 
