@@ -1,11 +1,8 @@
 class Level1{
 
 	 constructor() {
-	 	this.playerStartingX = 10;
-	 	this.playerStartingY = 10;
-
-	 	this.evilTwinStartingX = 670;
-	 	this.evilTwinStartingY = 10;
+	 	this.playerStartingX = 400;
+	 	this.playerStartingY = 10; 
  	 }
 
          addStartingText(game){
@@ -22,6 +19,10 @@ class Level1{
  	 	game.add.sprite(0, 0, 'background2');
 	 	game.add.sprite(640, 0, 'background2');
  	 }
+
+     addRedSlimes(redSlimes){
+        redSlimes.create(670, 10, 'monster2');
+     }
 
  	 addTrampolines(trampolines){
  	 	trampolines.create(600, 270, 'trampoline');

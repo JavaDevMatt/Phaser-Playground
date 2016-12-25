@@ -28,7 +28,7 @@ var playState = {
 	 	level.addStartingText(game);
 
    		this.initPlayer();
-		this.initEvilTwin();
+		this.initRedSlimes();
 		this.initTrampolines();
 		this.initKillers();
 		this.initPlatforms();
@@ -49,7 +49,11 @@ var playState = {
 
 	 	// animations
 	 	player.animations.play('stand');
-	 	evilTwin.animations.play('stand');
+
+	 	redSlimes.forEachAlive(function(item) {
+       	 	item.animations.play('stand');
+		}, this);
+
 	 	killers.forEachAlive(function(item) {
        	 	item.animations.play('stand');
 		}, this);
@@ -91,9 +95,9 @@ var playState = {
 	    }
 	     // overlaps
 	    game.physics.arcade.overlap(player, killers, this.die, null, this);
-	    game.physics.arcade.overlap(evilTwin, killers, this.win, null, this);
+	    game.physics.arcade.overlap(redSlimes, killers, this.win, null, this);
 	    game.physics.arcade.overlap(player, trampolines, this.trampolinePlayer, null, this);
-	    game.physics.arcade.overlap(evilTwin, trampolines, this.trampolineTwin, null, this);
+	    game.physics.arcade.overlap(redSlimes, trampolines, this.trampolineSlime, null, this);
 	    game.physics.arcade.overlap(player, arrows, this.arrowBoost, null, this);
 
 	    level.handleRidersLogic();
@@ -124,8 +128,8 @@ var playState = {
 	 	 
 	 },
 
-	 trampolineTwin: function(){
-	 	evilTwin.body.velocity.y -= 200;
+	 trampolineSlime: function(redSlime){
+	 	redSlime.body.velocity.y -= 200;
 	 	game.sound.play('trampoline_jump');
 	 },
 
@@ -150,10 +154,10 @@ var playState = {
 	 	}
 	 },
 
-	 win: function(){
+	 win: function(redSlime){
 	 	if(!isDead){
-	 		emitterRed.x = evilTwin.x + 15;
-    		emitterRed.y = evilTwin.y + 25;
+	 		emitterRed.x = redSlime.x + 15;
+    		emitterRed.y = redSlime.y + 25;
 			emitterRed.start(true, 3000, null, 600);
 
 	 		hasWon = true;
@@ -165,7 +169,7 @@ var playState = {
 	 	
 		 	game.sound.play('splash-death');
 		 	gameLevel++;
-		 	evilTwin.kill();
+		 	redSlime.kill();
 		 	setTimeout(function(){
 		 		if(gameLevel >= 3){
 		 			gameLevel = 1;
@@ -188,14 +192,22 @@ var playState = {
         player.body.collideWorldBounds = true;
 	 },
 
-	 initEvilTwin: function(){
-		evilTwin = game.add.sprite(level.evilTwinStartingX, level.evilTwinStartingY, 'monster2');
-		evilTwin.animations.add('stand', [0, 1, 2], 5, true);
-		game.physics.arcade.enable(evilTwin);
-		evilTwin.body.bounce.y = 0.2;
-		evilTwin.body.bounce.x = 1.0;
-   		evilTwin.body.gravity.y = 300;
-        evilTwin.body.collideWorldBounds = true;
+	 initRedSlimes: function(){
+	 	redSlimes = game.add.group();
+
+	 	redSlimes.enableBody = true;
+        game.physics.arcade.enable(redSlimes);
+
+		level.addRedSlimes(redSlimes);
+		redSlimes.forEachAlive(function(item) {
+   			item.body.bounce.y = 0.2;
+			item.body.bounce.x = 1.0;
+   			item.body.gravity.y = 300;
+        	item.body.collideWorldBounds = true;
+        	item.animations.add('stand', [0, 1, 2], 5, true);
+		}, this);
+
+		 
 	 },
 
 	 initTrampolines: function(){

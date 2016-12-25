@@ -4,12 +4,9 @@ class Level2{
         this.rider1;
 
 	 	this.playerStartingX = 10;
-	 	this.playerStartingY = 10;
-
-
-	 	this.evilTwinStartingX = 1470;
-	 	this.evilTwinStartingY = 10;
+	 	this.playerStartingY = 10; 
  	 }
+
 
     addStartingText(game){
                 // no text
@@ -22,6 +19,10 @@ class Level2{
 	 	game.add.sprite(640, 0, 'background2');
         game.add.sprite(1280, 0, 'background2');
  	 }
+
+     addRedSlimes(redSlimes){
+        redSlimes.create(1470, 10, 'monster2');
+     }
 
  	 addTrampolines(trampolines){
  	 	trampolines.create(50, 270, 'trampoline');
