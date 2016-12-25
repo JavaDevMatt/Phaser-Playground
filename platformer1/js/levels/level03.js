@@ -17,34 +17,33 @@ class Level3{
     }
  
      createBackground(game){
-        game.world.setBounds(0, 0, 885, 376);
+        game.world.setBounds(0, 0, 640, 376);
 
         game.add.sprite(0, 0, 'background2');
-        game.add.sprite(640, 0, 'background2');
      }
 
      addRedSlimes(redSlimes){
-        redSlimes.create(630, 10, 'monster2');
+        redSlimes.create(330, 10, 'monster2');
+        redSlimes.create(560, 10, 'monster2');
      }
 
      addTrampolines(trampolines){
-        trampolines.create(600, 270, 'trampoline');
+        trampolines.create(160, 10, 'trampoline');
      }
 
      addtPlatforms(platforms){
                 platforms.create(0, 112, 'tower1'); 
                 platforms.create(1, 300, 'platform');
-                platforms.create(506, 300, 'platform');
-                platforms.create(646, 300, 'platform');
-                platforms.create(646, 112, 'tower1');
+                platforms.create(421, 289, 'faller');
+
      }
 
      addKillers(killers){
         killers.create(142, 332, 'lava');
         killers.create(198, 332, 'lava');
-
         killers.create(254, 332, 'lava2');
-        killers.create(700, 332, 'lava2');
+        killers.create(506, 332, 'lava2');
+
 
      }
 

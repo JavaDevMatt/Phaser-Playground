@@ -30,6 +30,14 @@ var playState = {
 	 	level.createBackground(game);
 	 	level.addStartingText(game);
 
+
+	 	tnt = game.add.sprite(360, 150, 'tnt');
+		game.physics.arcade.enable(tnt);
+		tnt.body.bounce.y = 0.2;
+   		tnt.body.gravity.y = 300;
+        tnt.body.collideWorldBounds = true;
+
+
    		this.initPlayer();
 		this.initRedSlimes();
 		this.initTrampolines();
@@ -42,13 +50,29 @@ var playState = {
 		this.initEmitters();
 		this.initRain();
 
+		switchFallers = game.add.group();
+        switchFallers.enableBody = true;
+        game.physics.arcade.enable(switchFallers);
+        switchFallers.create(136, 242, 'faller'); 
+        switchFallers.create(330, 112, 'faller');
 
-		tnt = game.add.sprite(70, 10, 'tnt');
-		game.physics.arcade.enable(tnt);
-		tnt.body.bounce.y = 0.2;
-   		tnt.body.gravity.y = 300;
-        tnt.body.collideWorldBounds = true;
+        switchFallers.create(208, 242, 'platform');
+        switchFallers.create(349, 289, 'faller');
+        switchFallers.create(493, 289, 'faller');
+        switchFallers.create(565, 289, 'faller');
 
+
+
+
+        // switchFallers.create(418, 112, 'platform');
+        switchFallers.create(530, 32, 'tower1');
+
+   		switchFallers.forEachAlive(function(item) {
+        	item.body.immovable = true;
+		}, this);
+
+
+		
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -118,6 +142,8 @@ var playState = {
 	    game.physics.arcade.overlap(redSlimes, trampolines, this.trampolineSlime, null, this);
 	    game.physics.arcade.overlap(player, arrows, this.arrowBoost, null, this);
 	    game.physics.arcade.overlap(player, tnt, this.tntExplode, null, this);
+	    game.physics.arcade.overlap(redSlimes, tnt, this.tntExplode, null, this);
+	    
 
 	    level.handleRidersLogic();
 
@@ -154,6 +180,10 @@ var playState = {
 		 		game.camera.shake(0.01, 2000, true);
 		 		l3.kill();
 		 		tnt.kill();
+
+		 		switchFallers.forEachAlive(function(item) {
+        			item.body.immovable = false;
+				}, this);
 
 		 		canTntExplode = true;
 			}, 3000);
@@ -228,7 +258,7 @@ var playState = {
 	 	if(!isDead){
 	 		emitterRed.x = redSlime.x + 15;
     		emitterRed.y = redSlime.y + 25;
-			emitterRed.start(true, 3000, null, 600);
+			emitterRed.start(true, 3000, null, 20);
 
 	 		
 		 	game.sound.play('splash-death');
