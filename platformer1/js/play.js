@@ -42,6 +42,11 @@ var playState = {
         cursors = game.input.keyboard.createCursorKeys();
 
         game.camera.follow(player); 
+
+	 },
+
+	 shakeCamera: function(){
+	 	game.camera.shake(0.01, 300);
 	 },
 
 	 update: function() {   
@@ -141,6 +146,7 @@ var playState = {
 
 	 die: function(){
 	 	if(!hasWon){
+	 		this.shakeCamera();
 	 		emitter2.x = player.x + 15;
     		emitter2.y = player.y + 25;
 			emitter2.start(true, 600, null, 600);
@@ -162,6 +168,7 @@ var playState = {
 
 	 		
 		 	game.sound.play('splash-death');
+		 	this.shakeCamera();
 		 	redSlime.kill();
 
 		 	if(level instanceof Level2 && redSlimes.countLiving() == 1){
