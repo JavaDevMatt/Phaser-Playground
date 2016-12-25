@@ -143,7 +143,7 @@ var playState = {
 	    game.physics.arcade.overlap(player, arrows, this.arrowBoost, null, this);
 	    game.physics.arcade.overlap(player, tnt, this.tntExplode, null, this);
 	    game.physics.arcade.overlap(redSlimes, tnt, this.tntExplode, null, this);
-	    
+
 
 	    level.handleRidersLogic();
 
@@ -158,26 +158,27 @@ var playState = {
 
 	 tntExplode: function(){
 	 	if(canTntExplode){
+	 		game.sound.play('tnt')
 	 		canTntExplode = false;
-	 		var l1 = game.add.text(tnt.x + 5, tnt.y - 30, '3!', 
+	 		var l1 = game.add.text(tnt.x + 11, tnt.y - 30, '3!', 
                 {font: '20px Courier', fill: '#fff'});
 
 	 		var l2, l3;
 
 	 		setTimeout(function(){
 	 			l1.kill();
-	 			l2 = game.add.text(tnt.x + 5, tnt.y - 30, '2!', 
+	 			l2 = game.add.text(tnt.x + 11, tnt.y - 30, '2!', 
                 {font: '20px Courier', fill: '#fff'});
 			}, 1000);
 
 			setTimeout(function(){
 	 			l2.kill();
-	 			l3 = game.add.text(tnt.x + 5, tnt.y - 30, '1!', 
+	 			l3 = game.add.text(tnt.x + 11, tnt.y - 30, '1!', 
                 {font: '20px Courier', fill: '#fff'});
 			}, 2000);
 
 		 	setTimeout(function(){
-		 		game.camera.shake(0.01, 2000, true);
+		 		game.camera.shake(0.04, 2000, true);
 		 		l3.kill();
 		 		tnt.kill();
 

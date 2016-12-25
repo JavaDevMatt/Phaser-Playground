@@ -14,6 +14,10 @@ class Level3{
     }
 
     addEndingText(game, player){
+        game.add.text(200, 100, 'Survived!', 
+                {font: '40px Courier', fill: '#fff'});
+                game.add.text(200, 136, 'You lucky son of a slime!', 
+                {font: '20px Courier', fill: '#fff'});
     }
  
      createBackground(game){
