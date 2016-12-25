@@ -118,6 +118,8 @@ var playState = {
 	        player.body.velocity.x = 150;
 	    }
 	    if (cursors.up.isDown && player.body.touching.down){
+	    	game.add.tween(player).to( { angle: 360 }, 600, Phaser.Easing.Linear.None, true);
+
 	    	game.sound.play('jump');
 	        player.body.velocity.y = -150;
 
@@ -146,8 +148,8 @@ var playState = {
 
 	    // boost indicator
 	    if(!canBoostFlag){
-	    	emitter2.x = player.x + 15;
-    		emitter2.y = player.y + 24;
+	    	emitter2.x = player.x + 0;
+    		emitter2.y = player.y + 12;
 
 			emitter2.start(true, 70, null, 10);
 	    }
@@ -294,6 +296,7 @@ var playState = {
 
 	 initPlayer: function(){
 		player = game.add.sprite(level.playerStartingX, level.playerStartingY, 'monster1');
+		player.anchor.setTo(0.5,0.5);
 		player.animations.add('stand', [0, 1, 2], 5, true);
 		game.physics.arcade.enable(player);
 		player.body.bounce.y = 0.2;
