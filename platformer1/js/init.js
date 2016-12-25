@@ -14,6 +14,7 @@ var initState = {
 		game.load.image('background2', 'assets/background2.png');
 		game.load.image('platform', 'assets/platform.png');
 		game.load.image('platform2', 'assets/platform2.png');
+		game.load.image('rain', 'assets/rain.png');
 		game.load.image('tower1', 'assets/tower1.png');
 		game.load.image('faller', 'assets/faller.png'); 
 		game.load.image('particle', 'assets/particle.png'); 

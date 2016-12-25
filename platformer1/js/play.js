@@ -37,6 +37,7 @@ var playState = {
 		this.initSlowFallers();
 		this.initRiders();
 		this.initEmitters();
+		this.initRain();
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -296,6 +297,24 @@ var playState = {
 		emitterRed = game.add.emitter(0, 0, 100);
    		emitterRed.makeParticles('red-particle');
 		emitterRed.gravity = 50;
+	 },
+
+	 initRain: function(){
+	 	rainEmitter = game.add.emitter(game.world.centerX, 0, 400);
+        rainEmitter.width = game.world.width;
+        rainEmitter.angle = -3;
+        rainEmitter.makeParticles('rain');
+
+		rainEmitter.minParticleScale = 0.1;
+		rainEmitter.maxParticleScale = 0.5;
+
+		rainEmitter.setYSpeed(300, 500);
+		rainEmitter.setXSpeed(-5, 5);
+
+		rainEmitter.minRotation = 0;
+		rainEmitter.maxRotation = 0;
+
+		rainEmitter.start(false, 800, 5, 0);
 	 },
 
 
