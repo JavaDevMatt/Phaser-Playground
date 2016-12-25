@@ -21,7 +21,7 @@ class Level1{
     }
 
  	 createBackground(game){
- 	 	game.world.setBounds(0, 0, 745, 376);
+ 	 	game.world.setBounds(0, 0, 885, 376);
 
  	 	game.add.sprite(0, 0, 'background2');
 	 	game.add.sprite(640, 0, 'background2');
@@ -45,7 +45,9 @@ class Level1{
 
  	 addKillers(killers){
  	 	killers.create(141, 332, 'lava');
-                killers.create(254, 332, 'lava2');
+        killers.create(254, 332, 'lava2');
+        killers.create(700, 332, 'lava2');
+
  	 }
 
  	 addArrows(arrows){
