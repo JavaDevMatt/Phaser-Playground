@@ -7,14 +7,16 @@ var playState = {
 	 },
 
 	 chooseLevel: function(){
-	 	// return level = new Level2();
-
+	 	return level = new Level3();
+  
 	 	if(gameLevel == 1){
 	 		return level = new Level1();
-	 	} else {
+	 	} else if(gameLevel == 2) {
 	 		// music.stop();
 	 		// music = game.sound.play('music2');
 	 		return level = new Level2();
+	 	} else {
+	 		return level = new Level3();
 	 	}
 	 },
 
@@ -50,6 +52,7 @@ var playState = {
 	 },
 
 	 update: function() {   
+
 	 	// collisios
 	 	collisionsHandler.update()
 
@@ -206,7 +209,7 @@ var playState = {
 		 		hasWon = true;
 			 	gameLevel++;
 			 	setTimeout(function(){
-			 		if(gameLevel >= 3){
+			 		if(gameLevel >= 4){
 			 			gameLevel = 1;
 			 			game.state.start('menu');
 			 		} else {
