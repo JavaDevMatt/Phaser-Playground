@@ -32,8 +32,10 @@ var menuState = {
 	},
 
 	startGame: function(){
-		music.volume = 0.5;
-		game.sound.play('splash');
+		music.volume = 0.3;
+		rain = game.sound.play('splash');
+		rain.volume = 0.5;
+		game.sound.play('rain');
 		console.log('dummy startGame');
 		game.state.start('play');
 	},

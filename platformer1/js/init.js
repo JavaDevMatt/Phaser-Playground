@@ -33,6 +33,7 @@ var initState = {
 		game.load.audio('splash-death', 'assets/splash-death.mp3'); // http://freesound.org/people/Setuniman/sounds/135774/
 		game.load.audio('ding', 'assets/ding.mp3'); // http://freesound.org/people/gloriaeffect/sounds/108428/
 		game.load.audio('jump', 'assets/jump.mp3');
+		game.load.audio('rain', 'assets/rain.mp3');
 		game.load.audio('trampoline_jump', 'assets/trampoline_jump.mp3'); // http://freesound.org/people/arteffect/sounds/349854/
 		game.load.audio('die', 'assets/die.mp3');
 	},
