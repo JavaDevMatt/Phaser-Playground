@@ -1,7 +1,7 @@
 class Level1{
 
 	 constructor() {
-	 	this.playerStartingX = 400;
+	 	this.playerStartingX = 10;
 	 	this.playerStartingY = 10; 
  	 }
 

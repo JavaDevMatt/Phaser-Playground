@@ -9,7 +9,11 @@ class Level2{
 
 
     addStartingText(game){
-                // no text
+                var loadingLabel = game.add.text(110, 278, 'Kill 2 red evil slimes!', 
+                        {font: '20px Courier', fill: '#fff'});
+                setTimeout(function(){
+                        loadingLabel.kill();
+                }, 8000);
     }
 
  	 createBackground(game){
@@ -22,6 +26,7 @@ class Level2{
 
      addRedSlimes(redSlimes){
         redSlimes.create(1470, 10, 'monster2');
+        redSlimes.create(390, 70, 'monster2');
      }
 
  	 addTrampolines(trampolines){
