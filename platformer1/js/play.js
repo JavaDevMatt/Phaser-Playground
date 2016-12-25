@@ -123,14 +123,14 @@ var playState = {
 	    	game.sound.play('jump');
 	        player.body.velocity.y = -150;
 
-	        emitter.x = player.x + 15;
-    		emitter.y = player.y + 25;
+	        emitter.x = player.x;
+    		emitter.y = player.y + 5;
 			emitter.start(true, 2000, null, 20);
 	    }
 
 	    if(player.body.touching.down && player.body.velocity.x != 0){
-	    	emitter.x = player.x + 15;
-    		emitter.y = player.y + 25;
+	    	emitter.x = player.x;
+    		emitter.y = player.y + 15;
 
 			emitter.start(true, 100, null, 1);
 	    }
@@ -151,7 +151,7 @@ var playState = {
 	    	emitter2.x = player.x + 0;
     		emitter2.y = player.y + 12;
 
-			emitter2.start(true, 70, null, 10);
+			// emitter2.start(true, 70, null, 10);
 	    }
 	 },
 
@@ -395,10 +395,12 @@ var playState = {
 		emitter2 = game.add.emitter(0, 0, 100);
    		emitter2.makeParticles('particle2');
 		emitter2.gravity = 50;
+		emitter2.setScale(1.0, 0, 1.0, 0, 2000);
 
 		emitterRed = game.add.emitter(0, 0, 100);
    		emitterRed.makeParticles('red-particle');
 		emitterRed.gravity = 50;
+		emitterRed.setScale(1.0, 0, 1.0, 0, 1500);
 	 },
 
 	 initRain: function(){
