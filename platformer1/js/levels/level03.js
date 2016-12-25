@@ -6,6 +6,11 @@ class Level3{
      }
 
     addStartingText(game){
+        var levelLabel = game.add.text(0, 0, 'Time to blow some shit up!', 
+                        {font: '20px Courier', fill: '#fff'});
+                setTimeout(function(){
+                        levelLabel.kill();
+                }, 3000);
     }
 
     addEndingText(game, player){

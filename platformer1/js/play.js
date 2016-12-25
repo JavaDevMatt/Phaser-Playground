@@ -2,6 +2,7 @@ var playState = {
 
 	 resetState: function(){
 	 	canBoostFlag = true;
+	 	canTntExplode = true;
 	 	isDead = false;
 	 	hasWon = false;
 	 },
@@ -40,6 +41,14 @@ var playState = {
 		this.initRiders();
 		this.initEmitters();
 		this.initRain();
+
+
+		tnt = game.add.sprite(70, 10, 'tnt');
+		game.physics.arcade.enable(tnt);
+		tnt.body.bounce.y = 0.2;
+   		tnt.body.gravity.y = 300;
+        tnt.body.collideWorldBounds = true;
+
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -108,6 +117,7 @@ var playState = {
 	    game.physics.arcade.overlap(player, trampolines, this.trampolinePlayer, null, this);
 	    game.physics.arcade.overlap(redSlimes, trampolines, this.trampolineSlime, null, this);
 	    game.physics.arcade.overlap(player, arrows, this.arrowBoost, null, this);
+	    game.physics.arcade.overlap(player, tnt, this.tntExplode, null, this);
 
 	    level.handleRidersLogic();
 
@@ -118,6 +128,37 @@ var playState = {
 
 			emitter2.start(true, 70, null, 10);
 	    }
+	 },
+
+	 tntExplode: function(){
+	 	if(canTntExplode){
+	 		canTntExplode = false;
+	 		var l1 = game.add.text(tnt.x + 5, tnt.y - 30, '3!', 
+                {font: '20px Courier', fill: '#fff'});
+
+	 		var l2, l3;
+
+	 		setTimeout(function(){
+	 			l1.kill();
+	 			l2 = game.add.text(tnt.x + 5, tnt.y - 30, '2!', 
+                {font: '20px Courier', fill: '#fff'});
+			}, 1000);
+
+			setTimeout(function(){
+	 			l2.kill();
+	 			l3 = game.add.text(tnt.x + 5, tnt.y - 30, '1!', 
+                {font: '20px Courier', fill: '#fff'});
+			}, 2000);
+
+		 	setTimeout(function(){
+		 		game.camera.shake(0.01, 2000, true);
+		 		l3.kill();
+		 		tnt.kill();
+
+		 		canTntExplode = true;
+			}, 3000);
+	 	}
+	 		
 	 },
 
 	 arrowBoost: function(player, arrow){
