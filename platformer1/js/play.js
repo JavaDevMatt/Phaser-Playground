@@ -95,7 +95,7 @@ var playState = {
 	    }
 	     // overlaps
 	    game.physics.arcade.overlap(player, killers, this.die, null, this);
-	    game.physics.arcade.overlap(redSlimes, killers, this.win, null, this);
+	    game.physics.arcade.overlap(redSlimes, killers, this.killRedSlime, null, this);
 	    game.physics.arcade.overlap(player, trampolines, this.trampolinePlayer, null, this);
 	    game.physics.arcade.overlap(redSlimes, trampolines, this.trampolineSlime, null, this);
 	    game.physics.arcade.overlap(player, arrows, this.arrowBoost, null, this);
@@ -153,7 +153,7 @@ var playState = {
 	 	}
 	 },
 
-	 win: function(redSlime){
+	 killRedSlime: function(redSlime){
 	 	if(!isDead){
 	 		emitterRed.x = redSlime.x + 15;
     		emitterRed.y = redSlime.y + 25;
@@ -163,12 +163,18 @@ var playState = {
 		 	game.sound.play('splash-death');
 		 	redSlime.kill();
 
+		 	if(level instanceof Level2 && redSlimes.countLiving() == 1){
+		 		var infoLabel = game.add.text(310, 278, 'One more!', 
+                        {font: '20px Courier', fill: '#fff'});
+                setTimeout(function(){
+                        infoLabel.kill();
+                }, 3000);
+		 	}
+
 		 	if(redSlimes.countLiving() <= 0){
 
-			 	game.add.text(player.x - 200, 100, 'Great!', 
-				{font: '40px Courier', fill: '#fff'});
-		 		game.add.text(player.x - 200, 136, 'Time for the next one....', 
-				{font: '20px Courier', fill: '#fff'});
+		 		level.addEndingText(game, player);
+			 	
 		 		hasWon = true;
 			 	gameLevel++;
 			 	setTimeout(function(){
@@ -180,7 +186,7 @@ var playState = {
 			 		}
 			 		
 				}, 3000);
-				
+
 			}
 	 	}
 	 	

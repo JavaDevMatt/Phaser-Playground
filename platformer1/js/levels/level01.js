@@ -5,13 +5,20 @@ class Level1{
 	 	this.playerStartingY = 10; 
  	 }
 
-         addStartingText(game){
+    addStartingText(game){
                 var loadingLabel = game.add.text(80, 278, 'Kill the evil slime!', 
                         {font: '20px Courier', fill: '#fff'});
                 setTimeout(function(){
                         loadingLabel.kill();
-                }, 8000);
-         }
+                }, 8000); 
+    }
+
+    addEndingText(game, player){
+        game.add.text(player.x - 200, 100, 'Great!', 
+                {font: '40px Courier', fill: '#fff'});
+                game.add.text(player.x - 200, 136, 'Time for the next one....', 
+                {font: '20px Courier', fill: '#fff'});
+    }
 
  	 createBackground(game){
  	 	game.world.setBounds(0, 0, 745, 376);
