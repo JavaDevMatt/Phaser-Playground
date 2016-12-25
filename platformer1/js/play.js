@@ -157,6 +157,7 @@ var playState = {
 
 	 tntExplode: function(){
 	 	if(canTntExplode){
+	 		game.add.tween(tnt).to( { alpha: 0 }, 700, Phaser.Easing.Linear.None, true, 0, 1000, true);
 	 		game.sound.play('tnt')
 	 		canTntExplode = false;
 	 		var l1 = game.add.text(tnt.x + 11, tnt.y - 30, '3!', 
@@ -179,13 +180,22 @@ var playState = {
 		 	setTimeout(function(){
 		 		game.camera.shake(0.04, 2000, true);
 		 		l3.kill();
+
+		 		emitterTnt = game.add.emitter(0, 0, 100);
+   				emitterTnt.makeParticles('red-particle');
+				emitterTnt.gravity = 30;
+				emitterTnt.setScale(1.0, 0, 1.0, 0, 4000);
+				emitterTnt.x = tnt.x + 20;
+    			emitterTnt.y = tnt.y + 20;
+				emitterTnt.start(true, 4000, null, 100);
+
 		 		tnt.kill();
 
 		 		switchFallers.forEachAlive(function(item) {
         			item.body.immovable = false;
 				}, this);
 
-		 		canTntExplode = true;
+		 		// canTntExplode = true;
 			}, 3000);
 	 	}
 	 		
