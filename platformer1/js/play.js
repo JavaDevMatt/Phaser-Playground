@@ -8,7 +8,7 @@ var playState = {
 	 },
 
 	 chooseLevel: function(){
-	 	// return level = new Level3(); 
+	 	// return level = new Level2(); 
   
 	 	if(gameLevel == 1){
 	 		return level = new Level1();
@@ -117,16 +117,7 @@ var playState = {
 	    game.physics.arcade.overlap(player, tnt, this.tntExplode, null, this);
 	    game.physics.arcade.overlap(redSlimes, tnt, this.tntExplode, null, this);
 
-
 	    level.handleRidersLogic();
-
-	    // boost indicator
-	    if(!canBoostFlag){
-	    	emitter2.x = player.x + 0;
-    		emitter2.y = player.y + 12;
-
-			// emitter2.start(true, 70, null, 10);
-	    }
 	 },
 
 	 tntExplode: function(){
@@ -170,28 +161,32 @@ var playState = {
 
 	 arrowBoost: function(player, arrow){
 	 	if(canBoostFlag){
+	 		boostTween = game.add.tween(player).to( { alpha: 0 }, 50, Phaser.Easing.Linear.None, true, 0, 1000, true);
 	 		game.sound.play('ding')
 	 		canBoostFlag = false;
 	 		arrow.kill();
 
-	 		var l1 = game.add.text(player.x + 5, player.y - 30, '3!', 
+	 		var l1 = game.add.text(player.x - 8, player.y - 30, '3!', 
                 {font: '20px Courier', fill: '#fff'});
 
 	 		var l2, l3;
 
 	 		setTimeout(function(){
 	 			l1.kill();
-	 			l2 = game.add.text(player.x + 5, player.y - 30, '2!', 
+	 			l2 = game.add.text(player.x - 8, player.y - 30, '2!', 
                 {font: '20px Courier', fill: '#fff'});
 			}, 1000);
 
 			setTimeout(function(){
 	 			l2.kill();
-	 			l3 = game.add.text(player.x + 5, player.y - 30, '1!', 
+	 			l3 = game.add.text(player.x - 8, player.y - 30, '1!', 
                 {font: '20px Courier', fill: '#fff'});
 			}, 2000);
 
 		 	setTimeout(function(){
+		 		boostTween.stop();
+	    		game.add.tween(player).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
+
 		 		l3.kill();
 		 		emitter2.x = player.x;
     			emitter2.y = player.y;
