@@ -8,7 +8,7 @@ var playState = {
 	 },
 
 	 chooseLevel: function(){
-	 	// return level = new Level3();
+	 	// return level = new Level2(); 
   
 	 	if(gameLevel == 1){
 	 		return level = new Level1();
@@ -181,21 +181,14 @@ var playState = {
 		 		game.camera.shake(0.04, 2000, true);
 		 		l3.kill();
 
-		 		emitterTnt = game.add.emitter(0, 0, 100);
-   				emitterTnt.makeParticles('red-particle');
-				emitterTnt.gravity = 30;
-				emitterTnt.setScale(1.0, 0, 1.0, 0, 4000);
-				emitterTnt.x = tnt.x + 20;
-    			emitterTnt.y = tnt.y + 20;
-				emitterTnt.start(true, 4000, null, 100);
-
-		 		tnt.kill();
+				setTimeout(function(){
+		 			tnt.kill();
+				}, 1000);
 
 		 		switchFallers.forEachAlive(function(item) {
         			item.body.immovable = false;
 				}, this);
 
-		 		// canTntExplode = true;
 			}, 3000);
 	 	}
 	 		
@@ -226,8 +219,8 @@ var playState = {
 
 		 	setTimeout(function(){
 		 		l3.kill();
-		 		emitter2.x = player.x + 15;
-    			emitter2.y = player.y + 25;
+		 		emitter2.x = player.x;
+    			emitter2.y = player.y;
 
 				emitter2.start(true, 5000, null, 500);
 
