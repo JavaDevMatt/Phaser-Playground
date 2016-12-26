@@ -8,7 +8,7 @@ var playState = {
 	 },
 
 	 chooseLevel: function(){
-	 	// return level = new Level2(); 
+	 	// return level = new Level3(); 
   
 	 	if(gameLevel == 1){
 	 		return level = new Level1();
@@ -30,16 +30,8 @@ var playState = {
 	 	level.createBackground(game);
 	 	level.addStartingText(game);
 
-	 	if(gameLevel == 3){
-			tnt = game.add.sprite(360, 150, 'tnt');
-			game.physics.arcade.enable(tnt);
-			tnt.body.bounce.y = 0.2;
-	   		tnt.body.gravity.y = 300;
-	        tnt.body.collideWorldBounds = true;
-	 	} else {
-	 		tnt = null;
-	 	}
-
+	 	
+	 	this.initTnt();
 	 	this.initPlayer();
 		this.initRedSlimes();
 		this.initTrampolines();
@@ -51,26 +43,8 @@ var playState = {
 		this.initRiders();
 		this.initEmitters();
 		this.initRain();
-
-
-			switchFallers = game.add.group();
-	 	if(gameLevel == 3){
-	        switchFallers.enableBody = true;
-	        game.physics.arcade.enable(switchFallers);
-	        switchFallers.create(136, 242, 'faller'); 
-	        switchFallers.create(330, 112, 'faller');
-
-	        switchFallers.create(208, 242, 'platform');
-	        switchFallers.create(349, 289, 'faller');
-	        switchFallers.create(493, 289, 'faller');
-	        switchFallers.create(565, 289, 'faller');
-	        switchFallers.create(530, 32, 'tower1');
-
-	   		switchFallers.forEachAlive(function(item) {
-	        	item.body.immovable = true;
-			}, this);
-	 	}
-	 	
+		this.initSwitchFallers();
+		
         cursors = game.input.keyboard.createCursorKeys();
 
         game.camera.follow(player); 
@@ -404,6 +378,38 @@ var playState = {
    		emitterRed.makeParticles('red-particle');
 		emitterRed.gravity = 50;
 		emitterRed.setScale(1.0, 0, 1.0, 0, 1500);
+	 },
+
+	 initTnt: function(){
+	 	if(gameLevel == 3){
+			tnt = game.add.sprite(360, 150, 'tnt');
+			game.physics.arcade.enable(tnt);
+			tnt.body.bounce.y = 0.2;
+	   		tnt.body.gravity.y = 300;
+	        tnt.body.collideWorldBounds = true;
+	 	} else {
+	 		tnt = null;
+	 	}
+	 },
+
+	 initSwitchFallers: function(){
+		switchFallers = game.add.group();
+	 	if(gameLevel == 3){
+	        switchFallers.enableBody = true;
+	        game.physics.arcade.enable(switchFallers);
+	        switchFallers.create(136, 242, 'faller'); 
+	        switchFallers.create(330, 112, 'faller');
+
+	        switchFallers.create(208, 242, 'platform');
+	        switchFallers.create(349, 289, 'faller');
+	        switchFallers.create(493, 289, 'faller');
+	        switchFallers.create(565, 289, 'faller');
+	        switchFallers.create(530, 32, 'tower1');
+
+	   		switchFallers.forEachAlive(function(item) {
+	        	item.body.immovable = true;
+			}, this);
+	 	}
 	 },
 
 	 initRain: function(){
