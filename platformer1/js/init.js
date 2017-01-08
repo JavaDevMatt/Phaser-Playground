@@ -23,8 +23,8 @@ var initState = {
 		game.load.image('trampoline', 'assets/trampoline.png');
 		game.load.image('arrow', 'assets/arrow.png');
 		game.load.image('tnt', 'assets/tnt.png');
-		game.load.image('right', 'assets/right.png');
-		
+		game.load.image('button', 'assets/button.png');
+
 
 		game.load.spritesheet('monster1', 'assets/monster1.png', 30, 23); // http://opengameart.org/content/scifi-creature-tileset-mini-32x32-scifi-creature-icons 
 		game.load.spritesheet('monster2', 'assets/monster2.png', 30, 23);

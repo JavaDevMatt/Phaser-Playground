@@ -5,8 +5,6 @@ var playState = {
 	 	canTntExplode = true;
 	 	isDead = false;
 	 	hasWon = false;
-
-	 	rightDown = false;
 	 },
 
 	 chooseLevel: function(){
@@ -51,29 +49,32 @@ var playState = {
 
         game.camera.follow(player); 
 
+        buttonRight = null;
+        buttonLeft = null;
+        buttonJump= null;
+
 		if (!game.device.desktop){
-			button = game.add.button(10, 300, 'right', null, this, 2, 1, 0);
+			buttonRight = game.add.button(160, 80, 'button', null, this, 2, 1, 0);
+			buttonRight.fixedToCamera = true;
+			buttonRight.isDown = false;
+			buttonRight.events.onInputDown.add(function () { buttonRight.isDown = true; });
+			buttonRight.events.onInputUp.add(function () { buttonRight.isDown = false; });
 
-			button.isDown = false;
-			button.events.onInputDown.add(function () { button.isDown = true; });
-			button.events.onInputUp.add(function () { button.isDown = false; });
-        	// button.onInputOver.add(this.buttonOver, this);
-        	// button.onInputOut.add(this.buttonOut, this);
+			buttonLeft = game.add.button(0, 80, 'button', null, this, 2, 1, 0);
+			buttonLeft.fixedToCamera = true;
+			buttonLeft.isDown = false;
+			buttonLeft.events.onInputDown.add(function () { buttonLeft.isDown = true; });
+			buttonLeft.events.onInputUp.add(function () { buttonLeft.isDown = false; });
 
-
+			buttonJump = game.add.button(465, 80, 'button', null, this, 2, 1, 0);
+			buttonJump.fixedToCamera = true;
+			buttonJump.isDown = false;
+			buttonJump.events.onInputDown.add(function () { buttonJump.isDown = true; });
+			buttonJump.events.onInputUp.add(function () { buttonJump.isDown = false; });
 		}
         
 	 },
 
-	 buttonOver: function() {
-	 	rightDown = true;
-    	console.log('btn over');
-	},
-
-	buttonOut: function() {
-		rightDown = false;
-    	console.log('btn out');
-	},
 
 	 shakeCamera: function(){
 	 	game.camera.shake(0.01, 300);
@@ -109,13 +110,13 @@ var playState = {
 		}, this);
 	    
 	    // controls
-	    if (cursors.left.isDown){
+	    if (cursors.left.isDown || (buttonLeft != null && buttonLeft.isDown)){
 	        player.body.velocity.x = -150;
 	    }
-	    else if (cursors.right.isDown || button.isDown){
+	    else if (cursors.right.isDown || (buttonRight != null && buttonRight.isDown)){
 	        player.body.velocity.x = 150;
 	    }
-	    if (cursors.up.isDown && player.body.touching.down){
+	    if ((cursors.up.isDown || (buttonJump != null && buttonJump.isDown)) && player.body.touching.down){
 	    	game.add.tween(player).to( { angle: 360 }, 600, Phaser.Easing.Linear.None, true);
 
 	    	game.sound.play('jump');
