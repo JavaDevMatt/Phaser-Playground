@@ -24,6 +24,7 @@ var menuState = {
 		var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
 		spaceKey.onDown.addOnce(this.startGame, this);
+		this.startGame();
 	},
 
 	update: function() {

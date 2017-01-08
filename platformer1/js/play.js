@@ -5,6 +5,8 @@ var playState = {
 	 	canTntExplode = true;
 	 	isDead = false;
 	 	hasWon = false;
+
+	 	rightDown = false;
 	 },
 
 	 chooseLevel: function(){
@@ -49,7 +51,29 @@ var playState = {
 
         game.camera.follow(player); 
 
+		if (!game.device.desktop){
+			button = game.add.button(10, 300, 'right', null, this, 2, 1, 0);
+
+			button.isDown = false;
+			button.events.onInputDown.add(function () { button.isDown = true; });
+			button.events.onInputUp.add(function () { button.isDown = false; });
+        	// button.onInputOver.add(this.buttonOver, this);
+        	// button.onInputOut.add(this.buttonOut, this);
+
+
+		}
+        
 	 },
+
+	 buttonOver: function() {
+	 	rightDown = true;
+    	console.log('btn over');
+	},
+
+	buttonOut: function() {
+		rightDown = false;
+    	console.log('btn out');
+	},
 
 	 shakeCamera: function(){
 	 	game.camera.shake(0.01, 300);
@@ -88,7 +112,7 @@ var playState = {
 	    if (cursors.left.isDown){
 	        player.body.velocity.x = -150;
 	    }
-	    else if (cursors.right.isDown){
+	    else if (cursors.right.isDown || button.isDown){
 	        player.body.velocity.x = 150;
 	    }
 	    if (cursors.up.isDown && player.body.touching.down){
