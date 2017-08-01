@@ -1,4 +1,5 @@
-var cursors, player, cursors;
+var cursors;
+var player;
 
 var playState = {
 
